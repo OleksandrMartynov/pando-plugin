@@ -27,6 +27,26 @@ Pando is on Claude **Team**, so the plugin reaches everyone through the organiza
 
 In Claude Code: `/plugin marketplace add OleksandrMartynov/pando-plugin`, then `/plugin install pando@pando`
 (Claude Code 2.1.275 and later also take `/plugin install pando --marketplace OleksandrMartynov/pando-plugin`).
+Claude Code asks before every Pando tool, reads included (tested 20 Nov — Cowork and claude.ai run the
+read-only ones without asking); allow the read tools for a session or in your settings, and keep
+`approve_proposal`, `reject_proposal` and `save_skill` on ask.
+
+## Workflows
+
+| Say | Runs |
+| --- | --- |
+| "the daily brief" · `/pando:daily-brief` | yesterday, what went wrong, what needs you, money |
+| "how did sign-ups do this month?" | `numbers-on-demand` |
+| "find new summer camps near Pasadena and confirm registration dates" · `/pando:research` | Researcher → you choose → Fact-checker proposes |
+| "who should we partner with?" · `/pando:partner-outreach` | Partner analyst → you choose → Writer drafts |
+| "social posts for this week" · `/pando:content-ideas` | Marketing (and Writer) draft from verified events |
+| "check our records" · `/pando:source-checks` | Fact-checker re-checks pages; Source agent reads feeds |
+| "the weekly review" · `/pando:weekly-review` | with the monthly review on the first Monday |
+| "make a skill that…" · `/pando:new-skill` | Agent builder drafts and tests → you say save |
+| "set up my briefs" · `/pando:setup-schedules` | the two scheduled tasks in Cowork |
+
+The agents behind them (`agents/`) only read, except the **Fact-checker**, which proposes. None can approve,
+reject or save: that happens only in your conversation, after your yes.
 
 Critical failures — a failed job, texts not delivered, a Saturday digest still unapproved — are not
 waiting for the brief: Pando posts them to the team's Slack channel within ten minutes.
@@ -62,6 +82,12 @@ one switch in the Pando admin turns the connector off.
 - `skills/weekly-review`, `skills/monthly-review` — demand gaps, the digest, cost per useful answer,
   experiments; stop / continue / scale.
 - `skills/setup-schedules` — sets up the scheduled briefs with you in Cowork.
+- `skills/research`, `partner-outreach`, `content-ideas`, `source-checks`, `new-skill` — the workflows,
+  each a few phases that hand work to the agents and come back to you before anything is proposed or saved.
+- `agents/` — researcher, fact-checker, source-agent, partner-analyst, writer, marketing,
+  report-builder, strategy-analyst, agent-builder: each with its own tool list (`tools:` allows,
+  `disallowedTools:` forbids) and a fixed report format.
+- `evals/` — realistic tasks run by real Claude Code with this plugin; run them before a release.
 
 The nine agents on the architecture diagram (Source agent, Researcher, Partner analyst, Fact-checker,
 Marketing, Writer, Report builder, Strategy analyst, Agent builder) and the workflows come next.
