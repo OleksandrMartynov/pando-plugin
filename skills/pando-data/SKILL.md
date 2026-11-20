@@ -14,6 +14,7 @@ pando.is/admin/mcp: say so and stop.
 | Question | Tool |
 | --- | --- |
 | How is Pando doing today? | `pando_overview` |
+| Yesterday against the week before (the daily brief) | `daily_activity` |
 | Parents: how many, joined per week, founding, digest on, opted out | `parents_totals` |
 | Questions parents texted: answered, held, did it help | `questions_totals`, `impact_totals` |
 | Records (activities, places, tips, doctors): by kind, status, freshness | `records_totals` |
