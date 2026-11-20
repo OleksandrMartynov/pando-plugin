@@ -1,19 +1,22 @@
 ---
 name: numbers-on-demand
-description: Use when the user asks for Pando's numbers — "how are we doing", sign-ups this week, questions and answers, records, the digest, delivery, costs, or a quick report for Janet. Produces a short, sourced summary from Pando MCP.
+description: Answers a question about Pando's numbers — sign-ups, questions and answers, records, the digest, delivery, costs — in a few sourced lines, biggest change first. Use when someone asks "how are we doing", "how many joined this week", "what did we spend", or wants a quick number for the founder.
+argument-hint: "[question or period]"
 ---
 
 # Numbers on demand
 
-1. Work out the period. "Yesterday" or "today" → `daily_activity` (yesterday beside the 7-day average,
-   on Pasadena's clock). Otherwise default to the last 4 weeks (pass `weeks: 4`; the tools' own default is 12); for costs, from the first of this month
-   to today.
-2. Call only the tools the question needs (see the `pando-data` skill), in parallel when they are independent.
-3. Answer in a few short lines, biggest change first: the number, what it is compared with, and one line on
-   what stands out. Weeks are Monday–Sunday; say which.
-4. When a tool says something is "not configured" (for example costs), say that plainly instead of a number.
-5. No names or phones — the tools do not return them; never ask for them. Quote a parent's question only
-   from `unanswered_questions`, and never try to work out who asked it.
+Rules: [../../shared/safety.md](../../shared/safety.md). Context and definitions: [../../shared/pando-context.md](../../shared/pando-context.md).
 
-Example: "Sign-ups: 7 in the last 4 weeks (5 in the week of Nov 9). Questions: 70 asked, 57 answered, 13
-held for a person (11 sensitive). Records: 11 approved, all fresh. Costs: SMS not configured yet."
+1. **Period.** "Yesterday" or "today" → `daily_activity` (`days: 8`). Otherwise the last 4 weeks
+   (`weeks: 4` — the tools' own default is 12). Costs: the 1st of this month to today.
+2. **Calls.** Only the tools the question needs (catalogue in the `pando-data` skill), independent ones
+   together. At most five calls.
+3. **Answer.** A few short lines, biggest change first: the number, what it is compared with, one line on
+   what stands out. Say which weeks (Monday–Sunday).
+4. **Gaps.** "Not configured" or a null is said as such, never as a number.
+
+Sample, invented numbers — the shape, not data:
+
+> Sign-ups: 9 in the last 4 weeks, 4 of them in the week of Nov 9 (the busiest so far). Questions: 52
+> asked, 44 answered, 8 held for a person. Costs this month: SMS not configured yet.

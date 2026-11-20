@@ -1,7 +1,7 @@
 {
   "name": "pando",
   "displayName": "Pando",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Pando's own agents and workflows for Claude Cowork: read Pando's numbers and records through Pando MCP, propose changes for an admin to approve, and get the numbers on demand.",
   "author": { "name": "QuitCode" },
   "license": "UNLICENSED"

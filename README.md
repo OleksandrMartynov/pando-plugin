@@ -25,7 +25,8 @@ Pando is on Claude **Team**, so the plugin reaches everyone through the organiza
 4. Ask for numbers ("how did sign-ups do this month?"), look up a record, or ask an agent to check a fact —
    any change comes back as a proposal for you to approve here in chat or at pando.is/admin/proposals.
 
-In Claude Code: `/plugin install pando --marketplace OleksandrMartynov/pando-plugin`.
+In Claude Code: `/plugin marketplace add OleksandrMartynov/pando-plugin`, then `/plugin install pando@pando`
+(Claude Code 2.1.275 and later also take `/plugin install pando --marketplace OleksandrMartynov/pando-plugin`).
 
 Critical failures — a failed job, texts not delivered, a Saturday digest still unapproved — are not
 waiting for the brief: Pando posts them to the team's Slack channel within ten minutes.
@@ -51,7 +52,10 @@ one switch in the Pando admin turns the connector off.
 ## What is here
 
 - `.mcp.json` — the Pando MCP connector.
-- `skills/pando-data` — which tool answers what; propose, never write.
+- `shared/` — the Pando context (founder, area, clock, definitions) and the safety rules every skill and
+  agent reads, one copy each.
+- `skills/pando-data` — the catalogue of the connector's tools (read / propose / approve) and how to make
+  a proposal.
 - `skills/numbers-on-demand` — short, sourced number summaries.
 - `skills/daily-brief` — the founder's 8am brief: yesterday against the week, what went wrong (with an
   owner), what waits for you, money, what parents ask for.

@@ -25,7 +25,8 @@ brief puts the person's day next to Pando's numbers.
 
 Propose each task in turn as a scheduled task, with exactly these values, and let the person confirm it
 (**Schedule**). If proposing a schedule is not offered here, tell them: Cowork → **Scheduled** → **New
-task** → **Set up manually**, with the same values.
+task** → **Set up manually**, with the same values. If their screen is labelled differently, give the
+same values in words.
 
 | Name | How often | When | Instructions |
 | --- | --- | --- | --- |
@@ -38,7 +39,7 @@ folder for these tasks: a folder makes a task run only while their computer is o
 ## 3. Let the tasks read Pando without asking
 
 A scheduled task stops, or runs without a tool, when that tool is set to **Always ask**. In Customize →
-Connectors → **Pando**, set these read tools to **Allow**:
+Connectors → **Pando**, set every tool of kind **read** in the `pando-data` catalogue to **Allow** — today:
 
 `pando_overview`, `parents_totals`, `questions_totals`, `records_totals`, `impact_totals`,
 `daily_activity`, `what_went_wrong`, `delivery_health`, `demand_by_place`, `unanswered_questions`,
