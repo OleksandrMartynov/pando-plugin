@@ -24,9 +24,11 @@ pando.is/admin/mcp: say so and stop.
 | Find a record / read one, with what parents said, its source page and last check | `search_records` (name, kind, area, age band), `get_record` |
 | What Pando spent | `costs_summary` (from, to as YYYY-MM-DD) |
 | Proposals waiting for an admin | `list_proposals` |
+| Questions Pando can't answer yet (their words, masked, never who asked) | `unanswered_questions` |
+| Save a skill the Agent builder made, after the admin said "save" | `save_skill` |
 
-Every total is a count. No tool returns a parent's name, phone or the text of their question — do not ask
-for one, and do not guess one from what you see.
+Every total is a count. No tool returns a parent's name or phone, and only `unanswered_questions` returns
+what a parent asked — do not ask for who asked, and do not guess it from what you see.
 
 ## Changing Pando: propose, never write
 
