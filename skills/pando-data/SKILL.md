@@ -19,8 +19,9 @@ pando.is/admin/mcp: say so and stop.
 | Records (activities, places, tips, doctors): by kind, status, freshness | `records_totals` |
 | Where Pando is wanted | `demand_by_place` |
 | Are texts being delivered | `delivery_health` |
+| What went wrong (jobs, undelivered texts, digest, held answers) | `what_went_wrong` (days) |
 | The weekly digest, by Saturday | `digest_weeks` (no week = the list of weeks) |
-| Find a record / read one, with what parents said | `search_records`, `get_record` |
+| Find a record / read one, with what parents said, its source page and last check | `search_records` (name, kind, area, age band), `get_record` |
 | What Pando spent | `costs_summary` (from, to as YYYY-MM-DD) |
 | Proposals waiting for an admin | `list_proposals` |
 
@@ -29,10 +30,15 @@ for one, and do not guess one from what you see.
 
 ## Changing Pando: propose, never write
 
-- A rename, retiring a record, or marking it ready to answer with: `propose_record_edit`.
+- A rename, retiring a record, marking it ready to answer with, or correcting its facts (venue, areas,
+  age bands, subcategory — with the page that shows it): `propose_record_edit`.
 - A new activity, place, tip or doctor (never a caregiver, never a private person): `propose_new_record`,
   always with the page it comes from as `source_url`.
-- A fact checked against the record's own source: `propose_fact_check` with `confirmed` or `stale`.
+- A fact checked against the record's own source: `propose_fact_check` with `confirmed`, `stale`, or
+  `unreachable` when the page could not be read — never guess `confirmed`.
+- Before proposing anything new, search what Pando already knows (`search_records`).
+- Areas are Pando's neighborhood slugs (`east-pasadena`); age bands are expecting, baby, toddler,
+  preschool, grade, tween, teen.
 
 A proposal changes nothing. It waits for an admin on pando.is/admin/proposals. Tell the user what you
 proposed and that it is waiting.
