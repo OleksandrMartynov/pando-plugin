@@ -7,12 +7,31 @@ approves them.
 
 ## Use it
 
-1. Install the plugin: in Claude Cowork, Customize → Plugins → Add marketplace → this repository; in
-   Claude Code, `/plugin install pando --marketplace OleksandrMartynov/pando-plugin`.
-2. On the plugin's **Connectors** tab, connect **Pando** and sign in with your Pando admin login. An admin
-   must have switched Pando MCP on at pando.is/admin/mcp.
-3. Ask for numbers ("how did sign-ups do this month?"), look up a record, or ask an agent to check a fact —
+Pando is on Claude **Team**, so the plugin reaches everyone through the organization:
+
+1. **Owner, once:** Organization settings → Connectors → add **Pando** (`https://pando.is/api/mcp`).
+   Then Organization settings → Plugins & skills → Add → Sync from GitHub → this repository (through the
+   Claude GitHub App), and set the plugin to *Installed by default*. Turn on automatic sync.
+2. **Each person:** on the plugin's **Connectors** tab, connect **Pando** and sign in with your Pando
+   admin login. Also connect **Gmail** and **Google Calendar** under Customize → Connectors — the
+   partner and daily-brief work reads them. An admin must have switched Pando MCP on at
+   pando.is/admin/mcp.
+3. **Scheduled work** (the 8am daily brief, the weekly review) is a scheduled task you create in Cowork
+   that runs the plugin's skill; set the Pando read tools to *allow* so it can run unattended. Approving
+   proposals and saving skills always waits for you.
+4. Ask for numbers ("how did sign-ups do this month?"), look up a record, or ask an agent to check a fact —
    any change comes back as a proposal for you to approve here in chat or at pando.is/admin/proposals.
+
+In Claude Code: `/plugin install pando --marketplace OleksandrMartynov/pando-plugin`.
+
+Emails and posts are drafts: Claude's Gmail connector reads mail but cannot send it, and there is no
+Instagram or Facebook connector, so you send and post them yourself.
+
+## Updates
+
+Every release raises `version` in `.claude-plugin/plugin.json` — Cowork's sync and Claude Code's update
+key on it. Skills the Agent builder saves (`save_skill` in Pando MCP) are committed here by Pando with the
+version raised in the same commit; a skill QuitCode maintains is never overwritten by it.
 
 ## Data
 
