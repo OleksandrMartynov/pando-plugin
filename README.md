@@ -17,9 +17,11 @@ Pando is on Claude **Team**, so the plugin reaches everyone through the organiza
    admin login. Also connect **Gmail** and **Google Calendar** under Customize → Connectors — the
    partner and daily-brief work reads them. An admin must have switched Pando MCP on at
    pando.is/admin/mcp.
-3. **Scheduled work** (the 8am daily brief, the weekly review) is a scheduled task you create in Cowork
-   that runs the plugin's skill; set the Pando read tools to *allow* so it can run unattended. Approving
-   proposals and saving skills always waits for you.
+3. **Scheduled work.** A plugin cannot schedule itself; say *"set up my briefs"* (or run
+   `/pando:setup-schedules`) and Claude walks you through two Cowork scheduled tasks — the daily brief at
+   8am and the weekly review on Monday (the monthly review rides on the first Monday) — and the Pando
+   read tools to set to *Allow* so they run on their own. Approving proposals and saving skills always
+   waits for you.
 4. Ask for numbers ("how did sign-ups do this month?"), look up a record, or ask an agent to check a fact —
    any change comes back as a proposal for you to approve here in chat or at pando.is/admin/proposals.
 
@@ -48,6 +50,11 @@ one switch in the Pando admin turns the connector off.
 - `.mcp.json` — the Pando MCP connector.
 - `skills/pando-data` — which tool answers what; propose, never write.
 - `skills/numbers-on-demand` — short, sourced number summaries.
+- `skills/daily-brief` — the founder's 8am brief: yesterday against the week, what went wrong (with an
+  owner), what waits for you, money, what parents ask for.
+- `skills/weekly-review`, `skills/monthly-review` — demand gaps, the digest, cost per useful answer,
+  experiments; stop / continue / scale.
+- `skills/setup-schedules` — sets up the scheduled briefs with you in Cowork.
 
 The nine agents on the architecture diagram (Source agent, Researcher, Partner analyst, Fact-checker,
 Marketing, Writer, Report builder, Strategy analyst, Agent builder) and the workflows come next.

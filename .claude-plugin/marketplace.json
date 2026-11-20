@@ -1,6 +1,9 @@
 {
   "name": "pando",
-  "owner": { "name": "QuitCode" },
+  "owner": {
+    "name": "QuitCode"
+  },
+  "description": "QuitCode's Pando plugin for Claude Cowork: Pando's agents, briefs and workflows through Pando MCP.",
   "plugins": [
     {
       "name": "pando",
