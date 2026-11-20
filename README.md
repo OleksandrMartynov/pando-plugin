@@ -27,6 +27,9 @@ Pando is on Claude **Team**, so the plugin reaches everyone through the organiza
 
 In Claude Code: `/plugin install pando --marketplace OleksandrMartynov/pando-plugin`.
 
+Critical failures — a failed job, texts not delivered, a Saturday digest still unapproved — are not
+waiting for the brief: Pando posts them to the team's Slack channel within ten minutes.
+
 Emails and posts are drafts: Claude's Gmail connector reads mail but cannot send it, and there is no
 Instagram or Facebook connector, so you send and post them yourself.
 
