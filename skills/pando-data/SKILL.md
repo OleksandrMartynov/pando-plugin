@@ -24,6 +24,7 @@ pando.is/admin/mcp: say so and stop.
 | Find a record / read one, with what parents said, its source page and last check | `search_records` (name, kind, area, age band), `get_record` |
 | What Pando spent | `costs_summary` (from, to as YYYY-MM-DD) |
 | Proposals waiting for an admin | `list_proposals` |
+| Events already approved for the weekly digest | `digest_candidates` |
 | Questions Pando can't answer yet (their words, masked, never who asked) | `unanswered_questions` |
 | Save a skill the Agent builder made, after the admin said "save" | `save_skill` |
 
@@ -36,6 +37,10 @@ what a parent asked — do not ask for who asked, and do not guess it from what 
   age bands, subcategory — with the page that shows it): `propose_record_edit`.
 - A new activity, place, tip or doctor (never a caregiver, never a private person): `propose_new_record`,
   always with the page it comes from as `source_url`.
+- A dated event, camp, class or free day for the weekly digest: `propose_event`, with the event's own
+  page (never a listing or round-up), its dates and ages as the page states them. Check
+  `digest_candidates` and `search_records` first. Approved, it goes first in the digest of every group
+  whose dates and ages it fits.
 - A fact checked against the record's own source: `propose_fact_check` with `confirmed`, `stale`, or
   `unreachable` when the page could not be read — never guess `confirmed`.
 - Before proposing anything new, search what Pando already knows (`search_records`).
