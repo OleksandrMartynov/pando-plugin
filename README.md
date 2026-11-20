@@ -9,7 +9,8 @@ approves them.
 
 Pando is on Claude **Team**, so the plugin reaches everyone through the organization:
 
-1. **Owner, once:** Organization settings → Connectors → add **Pando** (`https://pando.is/api/mcp`).
+1. **Owner, once:** Organization settings → Connectors → add **Pando** with exactly the URL in this
+   plugin's `.mcp.json` (`https://pando.is/api/mcp`), so Claude shows one Pando, not two.
    Then Organization settings → Plugins & skills → Add → Sync from GitHub → this repository (through the
    Claude GitHub App), and set the plugin to *Installed by default*. Turn on automatic sync.
 2. **Each person:** on the plugin's **Connectors** tab, connect **Pando** and sign in with your Pando
@@ -36,8 +37,9 @@ version raised in the same commit; a skill QuitCode maintains is never overwritt
 ## Data
 
 The plugin stores nothing itself. Claude sends tool calls to pando.is with your sign-in; Pando answers with
-counts and record facts, never a parent's name or phone. The one place a parent's words come back is the
-questions Pando could not answer yet — the question only, phone numbers and emails masked, never who asked.
+counts and record facts, never a parent's name or phone. A parent's words come back in two places only:
+the approved texts about a record, and the questions Pando could not answer yet — never who wrote or
+asked them, phone numbers and emails masked, and a sensitive or caregiver question only counted.
 Every call is logged by Pando, and
 one switch in the Pando admin turns the connector off.
 

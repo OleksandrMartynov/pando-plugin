@@ -6,7 +6,7 @@ description: Use when the user asks for Pando's numbers — "how are we doing", 
 # Numbers on demand
 
 1. Work out the period. "Yesterday" or "today" → `daily_activity` (yesterday beside the 7-day average,
-   on Pasadena's clock). Otherwise default to the last 4 weeks; for costs, from the first of this month
+   on Pasadena's clock). Otherwise default to the last 4 weeks (pass `weeks: 4`; the tools' own default is 12); for costs, from the first of this month
    to today.
 2. Call only the tools the question needs (see the `pando-data` skill), in parallel when they are independent.
 3. Answer in a few short lines, biggest change first: the number, what it is compared with, and one line on

@@ -14,7 +14,7 @@ pando.is/admin/mcp: say so and stop.
 | Question | Tool |
 | --- | --- |
 | How is Pando doing today? | `pando_overview` |
-| Yesterday against the week before (the daily brief) | `daily_activity` |
+| Yesterday against the week before (the daily brief) | `daily_activity` (`days` at least 8) |
 | Parents: how many, joined per week, founding, digest on, opted out | `parents_totals` |
 | Questions parents texted: answered, held, did it help | `questions_totals`, `impact_totals` |
 | Records (activities, places, tips, doctors): by kind, status, freshness | `records_totals` |
@@ -28,6 +28,9 @@ pando.is/admin/mcp: say so and stop.
 | Events already approved for the weekly digest | `digest_candidates` |
 | Questions Pando can't answer yet (their words, masked, never who asked) | `unanswered_questions` |
 | Save a skill the Agent builder made, after the admin said "save" | `save_skill` |
+
+For a short summary of numbers, follow the `numbers-on-demand` skill. Weeks run Monday–Sunday and days
+are on Pasadena's clock.
 
 Every total is a count. No tool returns a parent's name or phone, and only `unanswered_questions` returns
 what a parent asked — do not ask for who asked, and do not guess it from what you see.
