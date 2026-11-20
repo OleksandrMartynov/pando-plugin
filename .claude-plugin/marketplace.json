@@ -1,0 +1,11 @@
+{
+  "name": "pando",
+  "owner": { "name": "QuitCode" },
+  "plugins": [
+    {
+      "name": "pando",
+      "source": "./",
+      "description": "Pando's agents and workflows for Claude Cowork, through Pando MCP."
+    }
+  ]
+}

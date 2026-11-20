@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "pando": {
+      "type": "http",
+      "url": "https://pando.is/api/mcp"
+    }
+  }
+}
