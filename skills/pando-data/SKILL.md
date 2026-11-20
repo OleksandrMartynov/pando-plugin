@@ -43,8 +43,8 @@ what a parent asked — do not ask for who asked, and do not guess it from what 
   always with the page it comes from as `source_url`.
 - A dated event, camp, class or free day for the weekly digest: `propose_event`, with the event's own
   page (never a listing or round-up), its dates and ages as the page states them. Check
-  `digest_candidates` and `search_records` first. Approved, it goes first in the digest of every group
-  whose dates and ages it fits.
+  `digest_candidates` and `search_records` first. Approved, it is a candidate for the whole Pasadena
+  area: it goes ahead of the digest agent's finds for every group whose dates and ages it fits.
 - A fact checked against the record's own source: `propose_fact_check` with `confirmed`, `stale`, or
   `unreachable` when the page could not be read — never guess `confirmed`.
 - Before proposing anything new, search what Pando already knows (`search_records`).
