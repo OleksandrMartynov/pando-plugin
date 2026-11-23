@@ -68,5 +68,12 @@ for (const f of [...walk(path.join(root, "skills")), ...walk(path.join(root, "sh
   if (GONE.test(text)) fail(`${path.relative(root, f)}: names a tool that no longer exists (${GONE.exec(text)[0]})`);
 }
 
+/* Supabase and PostHog are in the plugin read-only (23 Nov): the switch is in their address. */
+const servers = JSON.parse(fs.readFileSync(path.join(root, ".mcp.json"), "utf8")).mcpServers ?? {};
+const READ_ONLY = { supabase: /[?&]read_only=true(&|$)/, posthog: /[?&]readonly=true(&|$)/ };
+for (const [name, rx] of Object.entries(READ_ONLY)) if (servers[name] && !rx.test(servers[name].url ?? "")) fail(`.mcp.json: ${name} is not read-only (${servers[name].url})`);
+for (const [name, s] of Object.entries(servers)) if (s.command || s.args || s.env || s.headers) fail(`.mcp.json: ${name} has a command, env or headers; only remote https servers belong in the plugin`);
+if (!failed) console.log(`ok    .mcp.json          ${Object.keys(servers).join(", ")}; supabase and posthog read-only`);
+
 console.log(failed ? `\n${failed} problem(s).` : "\nEvery agent's tools are what it should have.");
 process.exit(failed ? 1 : 0);

@@ -3,6 +3,14 @@
     "pando": {
       "type": "http",
       "url": "https://pando.is/api/mcp"
+    },
+    "supabase": {
+      "type": "http",
+      "url": "https://mcp.supabase.com/mcp?project_ref=nphxxatjbtpyzpmhkqpg&read_only=true&features=database,docs,debugging"
+    },
+    "posthog": {
+      "type": "http",
+      "url": "https://mcp.posthog.com/mcp?readonly=true&features=insights,dashboards,sql,events,product_analytics,web_analytics,error_tracking,llm_analytics,data_schema,docs"
     }
   }
 }

@@ -1,15 +1,16 @@
 ---
 name: pando-data
-description: Catalogue of the Pando connector's tools — which one answers which question about Pando's parents, questions, records, weekly digest, delivery and costs — and the rules for changing Pando, which only ever happens through a proposal an admin approves. Use when a task needs Pando's own data or a change to a Pando record.
+description: Catalogue of the Pando connector's tools — which one answers which question about Pando's parents, questions, records, weekly digest, delivery and costs — the read-only Supabase and PostHog connectors for what Pando's own tools cannot answer, and the rules for changing Pando, which only ever happens through a proposal an admin approves. Use when a task needs Pando's own data or a change to a Pando record.
 ---
 
 # Pando's data
 
 Read [../../shared/pando-context.md](../../shared/pando-context.md) and [../../shared/safety.md](../../shared/safety.md) first.
 
-The Pando connector is the only way into Pando. If a tool answers "Pando MCP is switched off", an admin
+The Pando connector is the way into Pando. If a tool answers "Pando MCP is switched off", an admin
 switched it off at pando.is/admin/mcp: say so and stop. If the connector is missing, it is connected from
-the plugin's **Connectors** tab with the Pando admin login.
+the plugin's **Connectors** tab with the Pando admin login. For what it cannot answer, two read-only
+connectors reach Pando's raw data — see [Supabase and PostHog](#supabase-and-posthog-read-only) below.
 
 ## Catalogue
 
@@ -46,6 +47,28 @@ on pando.is/admin/proposals; **check** — records when a source was read and ho
 
 Lists answer `{ results, has_more, narrow }`: when `has_more` is true, `narrow` says how to ask for less.
 For a short summary of numbers, use the `numbers-on-demand` skill.
+
+## Supabase and PostHog (read-only)
+
+Two more connectors in this plugin, each signed in with the person's **own** Supabase or PostHog account
+(only someone with access to Pando's project can use them). Both are **read-only by their address**:
+Supabase runs SQL as a read-only Postgres role, and PostHog lists no tool that creates, changes or deletes.
+Nothing can be written through them, and their address is locked against proposals.
+
+| Question | Connector | How |
+| --- | --- | --- |
+| A count or breakdown the Pando tools do not give (e.g. records by subcategory and area, answers by hold reason per week) | `supabase` | `list_tables` to see the schema, then `execute_sql` with a `select count(*) … group by …` |
+| What changed in the schema, which migrations ran | `supabase` | `list_migrations`, `list_tables` |
+| Errors and slow queries in the database | `supabase` | `get_logs`, `get_advisors` |
+| Product usage, funnels, sign-up and SMS events over time | `posthog` | insights, trends and SQL (HogQL) queries |
+| AI cost and latency by model or step, failed model calls | `posthog` | LLM analytics — totals only, see the rule below |
+| Errors in the app | `posthog` | error tracking |
+
+Rules — [shared rule 7](../../shared/safety.md): the Pando connector first; counts and aggregates only;
+never select or show a name, phone, email, address or a parent's words (no `select *` on `people`,
+`answers`, `message_log`, `share_contributions` or caregiver tables; no trace's input or output text);
+always exclude test rows (`not is_test`). A query that would need personal columns is not run: say what
+the person would need to look up in the Pando admin instead.
 
 ## Changing Pando
 

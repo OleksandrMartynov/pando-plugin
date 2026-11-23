@@ -18,6 +18,12 @@ Pando is on Claude **Team**, so the plugin reaches everyone through the organiza
    partner and daily-brief work reads them (read only: the Coordinator's calendar holds and reminders
    are not built — the features sheet still has them *to confirm*). An admin must have switched Pando MCP on at
    pando.is/admin/mcp.
+
+   **Supabase and PostHog (read-only).** Developers, and anyone with their own access to Pando's Supabase
+   project or PostHog organisation, can also connect **Supabase** and **PostHog** on the same tab and sign
+   in with their own account. Both are read-only by their address (Supabase runs SQL as a read-only
+   role; PostHog lists no tool that changes anything), and the plugin's rules keep them to counts —
+   they can see parents' details, so the Pando connector comes first (shared rule 7).
 3. **Scheduled work.** A plugin cannot schedule itself; say *"set up my briefs"* (or run
    `/pando:setup-schedules`) and Claude walks you through two Cowork scheduled tasks — the daily brief at
    8am and the weekly review on Monday (the monthly review rides on the first Monday) — and the Pando
