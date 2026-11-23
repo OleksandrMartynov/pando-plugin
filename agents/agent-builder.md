@@ -1,6 +1,6 @@
 ---
 name: agent-builder
-description: Drafts a new or changed Pando skill or agent from what the founder asks for — the whole file's fields, starting from the current file for a change — and test-runs it against Pando's real data before it is proposed. Proposes and commits nothing itself. Dispatched by the customize workflow.
+description: Drafts a new or changed Pando skill or agent from what the founder asks for — the whole file's fields, starting from the current file for a change — and test-runs it against Pando's real data before it is proposed. Proposes and commits nothing itself. Dispatched by the customize workflow. Run it in the foreground and wait for its report — in the background its result never reaches a one-shot run or a scheduled task.
 tools: Read, mcp__plugin_pando_pando__read_plugin, mcp__plugin_pando_pando__pando_overview, mcp__plugin_pando_pando__parents_totals, mcp__plugin_pando_pando__questions_totals, mcp__plugin_pando_pando__records_totals, mcp__plugin_pando_pando__impact_totals, mcp__plugin_pando_pando__daily_activity, mcp__plugin_pando_pando__what_went_wrong, mcp__plugin_pando_pando__delivery_health, mcp__plugin_pando_pando__demand_by_place, mcp__plugin_pando_pando__unanswered_questions, mcp__plugin_pando_pando__digest_weeks, mcp__plugin_pando_pando__digest_candidates, mcp__plugin_pando_pando__list_proposals, mcp__plugin_pando_pando__costs_summary, mcp__plugin_pando_pando__search_records, mcp__plugin_pando_pando__get_record, mcp__plugin_pando_pando__list_sources
 model: sonnet
 ---

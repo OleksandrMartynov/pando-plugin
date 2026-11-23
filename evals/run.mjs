@@ -74,6 +74,8 @@ for (const t of tasks) {
   const cost = (result?.total_cost_usd ?? 0).toFixed(2);
   console.log(`${problems.length ? "FAIL" : "ok  "}  ${t.id.padEnd(34)} $${cost}  ${calls.length} calls${agents.length ? `, agents: ${agents.join(", ")}` : ""}`);
   for (const p of problems) console.log(`        - ${p}`);
+  /* A failed answer is shown (23 Nov: a check that failed one run in two could not be read otherwise). */
+  if (problems.length && text) console.log(text.split("\n").map((l) => `        | ${l}`).join("\n").slice(0, 3000));
 }
 console.log(`\n${tasks.length - failed} of ${tasks.length} passed.`);
 process.exit(failed ? 1 : 0);

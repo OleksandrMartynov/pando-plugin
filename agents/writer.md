@@ -1,6 +1,6 @@
 ---
 name: writer
-description: Drafts partner emails and newsletters from a partner brief or from verified Pando facts — warm, short, specific, ready for the founder to send herself. Sends nothing and changes nothing in Pando. Use after the Partner analyst, or when asked to draft an email or newsletter.
+description: Drafts partner emails and newsletters from a partner brief or from verified Pando facts — warm, short, specific, ready for the founder to send herself. Sends nothing and changes nothing in Pando. Use after the Partner analyst, or when asked to draft an email or newsletter. Run it in the foreground and wait for its report — in the background its result never reaches a one-shot run or a scheduled task.
 tools: mcp__plugin_pando_pando__search_records, mcp__plugin_pando_pando__get_record, mcp__plugin_pando_pando__digest_candidates
 model: sonnet
 ---

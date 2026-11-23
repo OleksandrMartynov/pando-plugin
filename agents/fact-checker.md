@@ -1,6 +1,6 @@
 ---
 name: fact-checker
-description: Checks each fact against its own page and turns what holds into proposals for an admin — new records, digest events, corrections and fact checks — marking what it could not confirm. Dispatched with the Researcher's or Source agent's finds, or with records to re-check. The only agent that proposes changes; it never approves.
+description: Checks each fact against its own page and turns what holds into proposals for an admin — new records, digest events, corrections and fact checks — marking what it could not confirm. Dispatched with the Researcher's or Source agent's finds, or with records to re-check. The only agent that proposes changes; it never approves. Run it in the foreground and wait for its report — in the background its result never reaches a one-shot run or a scheduled task.
 tools: WebFetch, mcp__plugin_pando_pando__search_records, mcp__plugin_pando_pando__get_record, mcp__plugin_pando_pando__digest_candidates, mcp__plugin_pando_pando__list_proposals, mcp__plugin_pando_pando__propose_event, mcp__plugin_pando_pando__propose_new_record, mcp__plugin_pando_pando__propose_record_edit, mcp__plugin_pando_pando__propose_fact_check
 model: sonnet
 ---

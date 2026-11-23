@@ -1,6 +1,6 @@
 ---
 name: researcher
-description: Finds new local things for families — camps, classes, events and places by area and age — on the open web, with a source link for every fact, and checks what Pando already has. Returns candidates for the Fact-checker; changes nothing. Use when a task asks to find or research local activities.
+description: Finds new local things for families — camps, classes, events and places by area and age — on the open web, with a source link for every fact, and checks what Pando already has. Returns candidates for the Fact-checker; changes nothing. Use when a task asks to find or research local activities. Run it in the foreground and wait for its report — in the background its result never reaches a one-shot run or a scheduled task.
 tools: WebSearch, WebFetch, mcp__plugin_pando_pando__search_records, mcp__plugin_pando_pando__get_record, mcp__plugin_pando_pando__digest_candidates
 model: sonnet
 ---

@@ -1,6 +1,6 @@
 ---
 name: report-builder
-description: Pulls Pando's numbers for a period and returns them as a compact, labelled fact sheet — sign-ups, questions and answers, records, digest, delivery, costs, what went wrong. Read-only. Dispatched by the review workflows or the Strategy analyst; use when a task needs Pando's numbers gathered in one place.
+description: Pulls Pando's numbers for a period and returns them as a compact, labelled fact sheet — sign-ups, questions and answers, records, digest, delivery, costs, what went wrong. Read-only. Dispatched by the review workflows or the Strategy analyst; use when a task needs Pando's numbers gathered in one place. Run it in the foreground and wait for its report — in the background its result never reaches a one-shot run or a scheduled task.
 tools: mcp__plugin_pando_pando__pando_overview, mcp__plugin_pando_pando__parents_totals, mcp__plugin_pando_pando__questions_totals, mcp__plugin_pando_pando__records_totals, mcp__plugin_pando_pando__impact_totals, mcp__plugin_pando_pando__daily_activity, mcp__plugin_pando_pando__what_went_wrong, mcp__plugin_pando_pando__delivery_health, mcp__plugin_pando_pando__demand_by_place, mcp__plugin_pando_pando__unanswered_questions, mcp__plugin_pando_pando__digest_weeks, mcp__plugin_pando_pando__digest_candidates, mcp__plugin_pando_pando__list_proposals, mcp__plugin_pando_pando__costs_summary, mcp__plugin_pando_pando__search_records, mcp__plugin_pando_pando__get_record
 model: sonnet
 ---

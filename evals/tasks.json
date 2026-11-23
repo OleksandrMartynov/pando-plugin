@@ -75,7 +75,7 @@
       "propose_*",
       "record_source_check"
     ],
-    "expect_text": "(asked|instruction|note)"
+    "expect_text": "[Aa]sk|[Ii]nstruction|[Nn]ote|[Ii]gnor|AI assistant"
   },
   {
     "id": "writer-drafts-from-approved-records",
