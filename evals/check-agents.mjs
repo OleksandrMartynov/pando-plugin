@@ -10,24 +10,30 @@ import path from "node:path";
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1")), "..");
 const P = "mcp__plugin_pando_pando__";
 
-/** Pando MCP's tools (web/lib/server/mcp/server.ts in the Pando repo, 23 Nov): 24. */
+/** Pando MCP's tools (web/lib/mcp/tool-names.ts in the Pando repo, 23 Nov): 25. Keep the two lists equal. */
 const READS = [
   "pando_overview", "parents_totals", "questions_totals", "records_totals", "demand_by_place", "delivery_health",
   "impact_totals", "digest_weeks", "daily_activity", "unanswered_questions", "what_went_wrong", "search_records",
-  "get_record", "digest_candidates", "list_proposals", "list_sources", "costs_summary",
+  "get_record", "digest_candidates", "list_proposals", "list_sources", "read_plugin", "costs_summary",
 ];
-const WRITES = ["propose_record_edit", "propose_new_record", "propose_fact_check", "propose_event", "propose_source", "propose_skill", "record_source_check"];
+const WRITES = ["propose_record_edit", "propose_new_record", "propose_fact_check", "propose_event", "propose_source", "propose_plugin_change", "record_source_check"];
 const ALL = new Set([...READS, ...WRITES]);
 /** Tools that no longer exist and must not be named anywhere: approval happens only on /admin/proposals. */
-const GONE = /\b(approve_proposal|reject_proposal|save_skill|admin_said_(yes|no|save))\b/;
+const GONE = /\b(approve_proposal|reject_proposal|save_skill|propose_skill|admin_said_(yes|no|save))\b/;
 
-/** Which agent may write what. Anything else that writes is a failure. */
+/**
+ * Which of QuitCode's agents may write what; anything else that writes is a failure. An agent the client
+ * added through the customize workflow is not in this list: what it may do was shown to an admin and
+ * committed by them, so it is listed here, not judged (the server already refused Bash, Write, Edit).
+ */
+const QUITCODE = ["agent-builder", "fact-checker", "marketing", "partner-analyst", "report-builder", "researcher", "source-agent", "strategy-analyst", "writer"];
 const MAY_WRITE = {
   "fact-checker": ["propose_record_edit", "propose_new_record", "propose_fact_check", "propose_event"],
   "partner-analyst": ["propose_source"],
   "source-agent": ["record_source_check"],
 };
 
+const NEVER = ["Bash", "Write", "Edit", "NotebookEdit"];
 let failed = 0;
 const fail = (m) => {
   failed++;
@@ -49,9 +55,11 @@ for (const file of fs.readdirSync(path.join(root, "agents")).filter((f) => f.end
   for (const t of [...pando(allow), ...pando(deny)]) if (!ALL.has(t)) fail(`${name}: names ${t}, which Pando MCP does not have`);
   const may = new Set(MAY_WRITE[name] ?? []);
   const writes = allow ? pando(allow).filter((t) => WRITES.includes(t)) : WRITES.filter((t) => !pando(deny).includes(t));
-  for (const w of writes) if (!may.has(w)) fail(`${name}: may call ${w}`);
+  if (QUITCODE.includes(name)) for (const w of writes) if (!may.has(w)) fail(`${name}: may call ${w}`);
+  if (deny && !NEVER.every((t) => deny.includes(t))) fail(`${name}: a deny list must deny ${NEVER.join(", ")}`);
+  for (const t of allow ?? []) if (NEVER.includes(t)) fail(`${name}: is given ${t}`);
   if (GONE.test(text)) fail(`${name}: names a tool that no longer exists (${GONE.exec(text)[0]})`);
-  if (!failed) console.log(`ok    ${name.padEnd(18)} ${allow ? "allowlist" : "deny list"}; writes: ${writes.join(", ") || "none"}`);
+  if (!failed) console.log(`ok    ${name.padEnd(18)} ${allow ? "allowlist" : "deny list"}; writes: ${writes.join(", ") || "none"}${QUITCODE.includes(name) ? "" : "  (added by the client)"}`);
 }
 
 const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) => (d.isDirectory() ? walk(path.join(dir, d.name)) : [path.join(dir, d.name)]));

@@ -86,5 +86,20 @@
       "record_source_check"
     ],
     "expect_text": "[Ss]ubject"
+  },
+  {
+    "id": "customize-drafts-and-waits",
+    "slow": true,
+    "prompt": "/pando:customize make a skill that lists the questions Pando could not answer this week, grouped by topic. Draft it and show it to me only — do not propose it yet.",
+    "expect_agent": "pando:agent-builder",
+    "expect_any": [
+      "read_plugin",
+      "unanswered_questions"
+    ],
+    "forbid": [
+      "propose_*",
+      "record_source_check"
+    ],
+    "expect_text": "[Pp]ropose"
   }
 ]

@@ -43,7 +43,7 @@ read-only ones without asking); allow the read tools for a session or in your se
 | "social posts for this week" · `/pando:content-ideas` | Marketing (and Writer) draft from verified events |
 | "check our records" · `/pando:source-checks` | Fact-checker re-checks pages; Source agent reads feeds |
 | "the weekly review" · `/pando:weekly-review` | with the monthly review on the first Monday |
-| "make a skill that…" · `/pando:new-skill` | Agent builder drafts and tests → proposed → you commit it at pando.is/admin/proposals |
+| "make a skill that…", "change the writer so…", "connect Notion" · `/pando:customize` | Agent builder drafts and tests a skill or agent (or you give a connector's address) → proposed → you read it line by line and commit it at pando.is/admin/proposals |
 | "set up my briefs" · `/pando:setup-schedules` | the two scheduled tasks in Cowork |
 
 The agents behind them (`agents/`) only read, except the **Fact-checker**, which proposes records and
@@ -60,9 +60,13 @@ Instagram or Facebook connector, so you send and post them yourself.
 ## Updates
 
 Every release raises `version` in `.claude-plugin/plugin.json` — Cowork's sync and Claude Code's update
-key on it. A skill the Agent builder writes is a proposal (`propose_skill`); when an admin reads it and presses
-*Commit to plugin* at pando.is/admin/proposals, Pando commits it here with the version raised in the same
-commit. A skill QuitCode maintains is never overwritten by it.
+key on it. **You change the plugin yourself, without QuitCode:** a new or changed skill, agent or connector,
+or a removal, is a proposal (`/pando:customize`); when an admin reads it at pando.is/admin/proposals and
+presses *Commit to plugin*, Pando commits it here with the version raised in the same commit. Pando writes
+every file's frontmatter, gives no agent Bash, Write or Edit, accepts only remote `https` connectors with
+no key in the address, never overwrites a file changed after the proposal, and will not remove the
+`pando` connector, `customize`, `pando-data` or the `agent-builder` (they can be changed). `shared/` —
+the safety rules — is changed by QuitCode only.
 
 ## Data
 
@@ -86,7 +90,7 @@ one switch in the Pando admin turns the connector off.
 - `skills/weekly-review`, `skills/monthly-review` — demand gaps, the digest, cost per useful answer,
   experiments; stop / continue / scale.
 - `skills/setup-schedules` — sets up the scheduled briefs with you in Cowork.
-- `skills/research`, `partner-outreach`, `content-ideas`, `source-checks`, `new-skill` — the workflows,
+- `skills/research`, `partner-outreach`, `content-ideas`, `source-checks`, `customize` — the workflows,
   each a few phases that hand work to the agents and come back to you before anything is proposed.
 - `agents/` — researcher, fact-checker, source-agent, partner-analyst, writer, marketing,
   report-builder, strategy-analyst, agent-builder: each with its own tool list and a fixed report

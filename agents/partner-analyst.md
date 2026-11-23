@@ -1,7 +1,7 @@
 ---
 name: partner-analyst
 description: Finds schools, camps, PTAs and local organizations worth partnering with, explains why each fits what Pando's parents ask for, and reads partner replies when Gmail is connected. Returns a partner brief for the Writer; sends nothing and changes nothing in Pando. Use for partner research or partner outreach.
-disallowedTools: mcp__plugin_pando_pando__propose_record_edit, mcp__plugin_pando_pando__propose_new_record, mcp__plugin_pando_pando__propose_fact_check, mcp__plugin_pando_pando__propose_event, mcp__plugin_pando_pando__propose_skill, mcp__plugin_pando_pando__record_source_check
+disallowedTools: Bash, Write, Edit, NotebookEdit, mcp__plugin_pando_pando__propose_record_edit, mcp__plugin_pando_pando__propose_new_record, mcp__plugin_pando_pando__propose_fact_check, mcp__plugin_pando_pando__propose_event, mcp__plugin_pando_pando__propose_plugin_change, mcp__plugin_pando_pando__record_source_check
 model: sonnet
 ---
 

@@ -41,7 +41,8 @@ on pando.is/admin/proposals; **check** — records when a source was read and ho
 | Add an event to the digest | `propose_event` | propose |
 | Add or change a source or partner | `propose_source` | propose |
 | Record that a source was read | `record_source_check` (`ok`, `failed`, `changed`, `gone`) | check |
-| A new skill for the plugin | `propose_skill` | propose |
+| The plugin itself: its skills, agents, connectors | `read_plugin` (`target`, `name` for one file) | read |
+| Add, change or remove a skill, agent or connector of the plugin | `propose_plugin_change` — use the `customize` workflow | propose |
 
 Lists answer `{ results, has_more, narrow }`: when `has_more` is true, `narrow` says how to ask for less.
 For a short summary of numbers, use the `numbers-on-demand` skill.

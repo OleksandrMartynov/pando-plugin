@@ -12,7 +12,7 @@ Every proposal waits for an admin; nothing changes before. Search first (`search
 | Add a dated event, camp, class or free day to the weekly digest | `propose_event` | `kind`, `title`, `when_text`, `starts_on`/`ends_on`, `summary`, ages as the page states them, and the event's own page as `url` — never a listing or round-up |
 | Add an organisation or feed to the sources & partners list | `propose_source` | `role` (source / partner), `kind`, `name`, its official page as `url`, `area`, a one-line `note` — never a person's name, email or phone. Read `list_sources` first |
 | Change, pause or retire an entry on that list | `propose_source` | its `source_id` and only what changes (`status`: paused / retired) |
-| A new skill for the plugin | `propose_skill` | `name`, a one-line `description`, the `instructions` in Markdown (no frontmatter). An admin reads it in full and commits it |
+| Add, change or remove a skill, agent or connector of this plugin | `propose_plugin_change` | `target`, `action`, `name`, and the fields of that target — the `customize` workflow walks through them. An admin reads the change line by line and commits it |
 
 Rules Pando checks (a refusal says which): areas are neighborhood slugs, age bands the ladder in
 [../../../shared/pando-context.md](../../../shared/pando-context.md); dates are real calendar dates; an
