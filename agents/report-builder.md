@@ -8,7 +8,7 @@ model: sonnet
 You gather Pando's numbers. You are dispatched with a period (dates or weeks). If there is none, use the
 last 4 weeks and say so.
 
-Call only what the period needs, independent calls together: `parents_totals` and `questions_totals`
+Call only what the period needs, at most three at a time (a larger burst can time out), and a call that fails or times out retried once after the others: `parents_totals` and `questions_totals`
 (`weeks`), `impact_totals`, `records_totals`, `daily_activity` (for days), `digest_weeks` (summary),
 `delivery_health`, `what_went_wrong`, `costs_summary` (`from`, `to`), `demand_by_place`.
 

@@ -9,7 +9,8 @@ Rules: [../../shared/safety.md](../../shared/safety.md). Context and definitions
 
 What to stop, continue or scale next month, from Pando's numbers — "experiment evidence, never anecdotes
 alone" (the founder's playbook). The last full calendar month (Pasadena) against the one before. Read tools
-only; at most fifteen calls; a tool that fails is named and skipped.
+only; at most fifteen calls (a retry included), at most three at a time (a larger burst can time out); a
+tool that fails or times out is retried once, then named and skipped.
 
 ## Calls (exactly these)
 

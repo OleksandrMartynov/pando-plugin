@@ -9,7 +9,7 @@ Rules: [../../shared/safety.md](../../shared/safety.md). Context and definitions
 what is not tracked): [../../shared/pando-context.md](../../shared/pando-context.md).
 
 One page on last week (Monday–Sunday, Pasadena) that ends in decisions. Read tools only; at most fifteen
-calls; a tool that fails is named and skipped.
+calls (a retry included), at most three at a time (a larger burst can time out); a tool that fails or times out is retried once, then named and skipped.
 
 ## Steps
 

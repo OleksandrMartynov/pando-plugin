@@ -8,10 +8,10 @@ description: Writes Pando's daily founder brief — yesterday against the 7-day 
 Rules: [../../shared/safety.md](../../shared/safety.md). Context: [../../shared/pando-context.md](../../shared/pando-context.md).
 
 In under a minute of reading: how Pando did yesterday (Pasadena's clock) and what needs the founder today.
-Read tools only — this brief never proposes, approves, rejects or saves. At most ten calls. A tool that
+Read tools only — this brief never proposes, approves, rejects or saves. At most ten calls, a retry included. A tool that
 fails is named in its section and the brief goes on.
 
-## Calls (exactly these; independent ones together)
+## Calls (exactly these; at most three at a time — a larger burst can time out; retry a failed call once)
 
 | # | Call | What to read |
 | --- | --- | --- |

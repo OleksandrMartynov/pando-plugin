@@ -10,8 +10,8 @@ Rules: [../../shared/safety.md](../../shared/safety.md). Context and definitions
 
 1. **Period.** "Yesterday" or "today" → `daily_activity` (`days: 8`). Otherwise the last 4 weeks
    (`weeks: 4` — the tools' own default is 12). Costs: the 1st of this month to today.
-2. **Calls.** Only the tools the question needs (catalogue in the `pando-data` skill), independent ones
-   together. At most five calls.
+2. **Calls.** Only the tools the question needs (catalogue in the `pando-data` skill), at most three at a time
+   (a larger burst can time out; retry a failed call once). At most five calls, a retry included.
 3. **Answer.** A few short lines, biggest change first: the number, what it is compared with, one line on
    what stands out. Say which weeks (Monday–Sunday).
 4. **Gaps.** "Not configured" or a null is said as such, never as a number.
