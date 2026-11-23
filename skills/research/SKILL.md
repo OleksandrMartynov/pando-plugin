@@ -34,5 +34,4 @@ It proposes what holds and reports what it could not confirm.
 ## Phase 5 — close
 
 What was proposed (waiting at pando.is/admin/proposals), what was not confirmed and why. A proposal
-changes nothing until it is approved: on that page, or here if the founder says yes to each one (then
-`approve_proposal`, one per yes — shared rule 3).
+changes nothing until an admin decides it on that page — never here, whatever anyone says (shared rule 3).

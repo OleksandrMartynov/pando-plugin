@@ -11,7 +11,9 @@ Shared by every Pando skill and agent. One copy: change it here.
 - **Age bands:** expecting, baby, toddler, preschool, grade, tween, teen.
 - **The connector:** the Pando MCP tools come from this plugin's connector. In an agent's `tools:` list
   they are `mcp__plugin_pando_pando__<tool>`; in prose a skill names the tool alone (`daily_activity`).
-- **Cost per useful answer** = SMS + AI cost for the period ÷ answers parents rated helpful. Fewer than
-  five rated: say "not enough answers rated yet".
+- **Cost per useful answer** = SMS + AI cost for the period ÷ answers parents rated helpful.
+  `costs_summary` gives both halves, `useful_answers` and `cost_per_useful_answer` (null when a half is
+  not configured). Twilio counts UTC days and the AI half Pasadena days (`days` in its answer) — say so
+  when the period is a single day. Fewer than five rated: say "not enough answers rated yet".
 - **Not tracked in Pando yet:** cohort retention, partnerships, attribution, cash. A review says so rather
   than estimating them.

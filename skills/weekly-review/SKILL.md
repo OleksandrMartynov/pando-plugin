@@ -19,10 +19,10 @@ Call these with exactly these arguments:
 | --- | --- | --- |
 | 1 | `parents_totals` `{"weeks": 9}` | `joined_by_week` (sign-ups); totals `phone_verified`, `contributors`, `digest_on`, `opted_out` |
 | 2 | `questions_totals` `{"weeks": 9}` | `asked_by_week` — per week `asked`, `sent` (answered), `held`, `helped_yes`, `helped_no`; `held_by_reason` and `answered_from_public_only` are all-time totals, say so; `seed_tool_questions_by_category` |
-| 3 | `impact_totals` `{}` | `answered_yes`, `answered_no`, `awaiting`, `unasked` (never asked "did it help") |
+| 3 | `impact_totals` `{"from": "<last Monday>", "to": "<last Sunday>"}` | `answered_yes`, `answered_no`, `awaiting`, `unasked` (never asked "did it help"), `sent` — last week's answers |
 | 4 | `unanswered_questions` `{"days": 7, "limit": 30}` and `demand_by_place` `{}` | the questions' topics; where people and questions are |
 | 5 | `digest_weeks` `{"week": "<last Saturday, YYYY-MM-DD>"}` | `totals` only: `groups`, `families_texted`, `items`, `item_sends`, `reminders_waiting`, `reminders_sent`, `loved`, `ok`, `didnt_go`; and any group whose `status` is not ready |
-| 6 | `costs_summary` `{"from": "<last Monday>", "to": "<last Sunday>"}` | `sms.total`, `ai.total_usd` |
+| 6 | `costs_summary` `{"from": "<last Monday>", "to": "<last Sunday>"}` | `sms.total`, `ai.total_usd`, `useful_answers`, `cost_per_useful_answer` |
 | 7 | `records_totals` `{}` | `approved_by_freshness` (a missing key is 0), records waiting for review |
 | 8 | `delivery_health` `{"days": 7}` and `what_went_wrong` `{"days": 7}` | a `null` rate means "no delivery reports yet" |
 | 9 | `pando_overview` `{}` | `drop_off`: the sign-up steps |
@@ -49,8 +49,8 @@ Rules:
    with a count and the area if `demand_by_place` shows one. For each, one line: what kind of source or
    partner would answer it. This is the playbook's demand loop. At most five lines.
 4. **The digest.** From `totals`: families texted, items and how many times they went out, reminders sent,
-   "loved" / ok / didn't go; groups that failed or waited for approval. A test week (`is_test`) is said to
-   be one.
+   "loved" / ok / didn't go; groups that failed or waited for approval. Test editions are not in
+   `digest_weeks`.
 5. **Unit economics.** SMS + AI cost for the week and the **cost per useful answer** (definition in the
    shared context). A half "not configured" is said so.
 6. **Records.** Approved records that went stale; records waiting for review.

@@ -43,10 +43,11 @@ Connectors → **Pando**, set every tool of kind **read** in the `pando-data` ca
 
 `pando_overview`, `parents_totals`, `questions_totals`, `records_totals`, `impact_totals`,
 `daily_activity`, `what_went_wrong`, `delivery_health`, `demand_by_place`, `unanswered_questions`,
-`digest_weeks`, `digest_candidates`, `list_proposals`, `costs_summary`, `search_records`, `get_record`.
+`digest_weeks`, `digest_candidates`, `list_proposals`, `costs_summary`, `search_records`, `get_record`,
+`list_sources`.
 
-Keep **`approve_proposal`, `reject_proposal` and `save_skill` on Ask**, always: they change Pando or the
-plugin and wait for a person every time. The `propose_*` tools are not used by the briefs.
+Keep the `propose_*` tools and `record_source_check` on **Ask**: the briefs never use them. No tool
+approves anything — proposals are decided only at pando.is/admin/proposals.
 
 ## 4. Try it once
 

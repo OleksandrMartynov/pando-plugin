@@ -17,10 +17,10 @@ only; at most fifteen calls; a tool that fails is named and skipped.
 | --- | --- | --- |
 | 1 | `parents_totals` `{"weeks": 10}` | `joined_by_week`, summed into each month by the week's Monday |
 | 2 | `questions_totals` `{"weeks": 10}` | `asked_by_week` (`asked`, `sent`, `held`, `helped_yes`, `helped_no`) per month |
-| 3 | `impact_totals` `{}` | helped yes / no / awaiting / never asked |
+| 3 | `impact_totals` `{"from": "<1st of last month>", "to": "<its last day>"}` | helped yes / no / awaiting / never asked, for last month's answers |
 | 4 | `records_totals` `{}` | approved by freshness, waiting for review |
 | 5 | `demand_by_place` `{}` | where Pando is wanted |
-| 6 | `costs_summary` `{"from": "<1st of last month>", "to": "<its last day>"}` | `sms.total`, `ai.total_usd` |
+| 6 | `costs_summary` `{"from": "<1st of last month>", "to": "<its last day>"}` | `sms.total`, `ai.total_usd`, `useful_answers`, `cost_per_useful_answer` |
 | 7 | `costs_summary` `{"from": "<1st of the month before>", "to": "<its last day>"}` | the same, to compare |
 | 8 | `digest_weeks` `{}` | the month's Saturdays: groups, families, failed |
 | 9 | `unanswered_questions` `{"days": 31, "limit": 50}` | topics, and the counts not quoted |
