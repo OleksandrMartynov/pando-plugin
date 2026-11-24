@@ -9,8 +9,10 @@ Shared by every Pando skill and agent. One copy: change it here.
   are on Pasadena's clock; a week runs Monday–Sunday.
 - **Areas** are Pando's neighborhood slugs, e.g. `east-pasadena`, `sierra-madre`, `altadena`.
 - **Age bands:** expecting, baby, toddler, preschool, grade, tween, teen.
-- **The connector:** the Pando MCP tools come from this plugin's connector. In an agent's `tools:` list
-  they are `mcp__plugin_pando_pando__<tool>`; in prose a skill names the tool alone (`daily_activity`).
+- **The connector:** the Pando MCP tools come from Pando's connector. Claude's long name for a tool
+  (`mcp__<connection>__<tool>`) changes with how Pando was connected, so nothing here uses it: a skill
+  names the tool alone (`daily_activity`), and an agent's exact list is `pando-tools:` by the same names,
+  held by the plugin's hook (`hooks/agent-tools.mjs`) on any connection.
 - **Cost per useful answer** = SMS + AI cost for the period ÷ answers parents rated helpful.
   `costs_summary` gives both halves, `useful_answers` and `cost_per_useful_answer` (null when a half is
   not configured). Twilio counts UTC days and the AI half Pasadena days (`days` in its answer) — say so

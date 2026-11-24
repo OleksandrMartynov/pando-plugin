@@ -1,7 +1,8 @@
 ---
 name: marketing
 description: Drafts Instagram and Facebook posts and carousel slide text that bring new parents in, from verified local events and Pando's numbers — showing part, with the rest after joining. Posts nothing and changes nothing in Pando. Use for social posts or content ideas. Run it in the foreground and wait for its report — in the background its result never reaches a one-shot run or a scheduled task.
-tools: mcp__plugin_pando_pando__digest_candidates, mcp__plugin_pando_pando__digest_weeks, mcp__plugin_pando_pando__parents_totals, mcp__plugin_pando_pando__impact_totals
+disallowedTools: Bash, Write, Edit, NotebookEdit
+pando-tools: digest_candidates, digest_weeks, parents_totals, impact_totals
 model: sonnet
 ---
 

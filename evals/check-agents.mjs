@@ -1,33 +1,19 @@
 // A check with no Claude and no network (23 Nov): what every agent may call, against the tools Pando MCP
 // has. Run before a release, and after Pando MCP gains a tool:  node evals/check-agents.mjs
 //
-// Why: an agent with `disallowedTools:` may call every tool that list leaves out — so a tool Pando MCP
-// adds later is that agent's by default. The 23 Nov review found exactly that (the deny lists still
-// named approve_proposal and save_skill, and not the tools that replaced them).
+// Since 24 Nov an agent's exact list is `pando-tools:` by each tool's own name, held by hooks/agent-tools.mjs
+// on any connection — never a `tools:` of long `mcp__…` names, which named one connection only and left the
+// agent with nothing (Claude refused to start it) when Pando was connected another way.
 import fs from "node:fs";
 import path from "node:path";
+import { NEVER, PANDO_ALL, PANDO_DECIDES, PANDO_WRITES, SAFE_BUILTINS, decide, readAgent } from "../hooks/agent-tools.mjs";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1")), "..");
-const P = "mcp__plugin_pando_pando__";
-
-/** Pando MCP's tools (web/lib/mcp/tool-names.ts in the Pando repo, 24 Nov): 27. Keep the two lists equal. */
-const READS = [
-  "pando_overview", "parents_totals", "questions_totals", "records_totals", "demand_by_place", "delivery_health",
-  "impact_totals", "digest_weeks", "daily_activity", "unanswered_questions", "what_went_wrong", "search_records",
-  "get_record", "digest_candidates", "list_proposals", "list_sources", "read_plugin", "costs_summary",
-];
-const WRITES = ["propose_record_edit", "propose_new_record", "propose_fact_check", "propose_event", "propose_source", "propose_plugin_change", "record_source_check"];
-/**
- * The tools that decide a proposal (24 Nov): called only in the main conversation, on the person's own word
- * (shared rule 3). No agent may call them — an agent reads pages and mail, and text there must never reach a
- * decision — and no skill or agent names them, because the server refuses a proposed skill or agent that does
- * (so a file naming them could no longer be changed through /pando:customize). Only shared/ and the README may.
- */
-const DECIDES = ["approve_proposal", "reject_proposal"];
-const ALL = new Set([...READS, ...WRITES, ...DECIDES]);
 /** Tools that no longer exist and must not be named anywhere. */
 const GONE = /\b(save_skill|propose_skill|admin_said_(yes|no|save))\b/;
 const NAMES_DECIDING = /\b(approve_proposal|reject_proposal)\b/;
+/** A long name ties a file to one way of connecting Pando. */
+const LONG_NAME = /\bmcp__[A-Za-z0-9_-]+__[A-Za-z0-9_-]+/;
 
 /**
  * Which of QuitCode's agents may write what; anything else that writes is a failure. An agent the client
@@ -41,40 +27,65 @@ const MAY_WRITE = {
   "source-agent": ["record_source_check"],
 };
 
-const NEVER = ["Bash", "Write", "Edit", "NotebookEdit"];
 let failed = 0;
 const fail = (m) => {
   failed++;
   console.log(`FAIL  ${m}`);
 };
 
+/* The hook itself, on the calls that matter: a listed tool on three connections, an unlisted one, a decision. */
+{
+  const a = { tools: ["WebFetch", "search_records"], accounts: false };
+  const ok = (tool, want) => decide(tool, a).allow === want || fail(`hook: ${tool} should be ${want ? "allowed" : "refused"}`);
+  for (const p of ["mcp__plugin_pando_pando__", "mcp__pando__", "mcp__claude_ai_Pando__", "mcp__29882e05-23cb-5f75-9c2d-95ba70d8644d__"]) ok(p + "search_records", true);
+  ok("mcp__pando__propose_event", false);
+  ok("mcp__pando__approve_proposal", false);
+  ok("WebFetch", true);
+  ok("Bash", false);
+  ok("mcp__gmail__search_threads", false);
+  ok("ToolSearch", true);
+  if (decide("mcp__pando__search_records", null).allow) fail("hook: an agent whose file cannot be read must be refused everything");
+  const acc = { tools: ["Read"], accounts: true };
+  if (!decide("mcp__claude_ai_Gmail__search_threads", acc).allow) fail("hook: pando-accounts must let an account's tools through");
+  if (decide("mcp__claude_ai_Pando__propose_event", acc).allow) fail("hook: pando-accounts must never let an unlisted Pando tool through");
+  if (!failed) console.log("ok    hooks/agent-tools.mjs  holds a list on any connection; refuses what is not listed");
+}
+
 for (const file of fs.readdirSync(path.join(root, "agents")).filter((f) => f.endsWith(".md"))) {
+  const before = failed;
   const name = file.replace(/\.md$/, "");
   const text = fs.readFileSync(path.join(root, "agents", file), "utf8").replace(/\r\n/g, "\n");
   const front = /^---\n([\s\S]*?)\n---/.exec(text)?.[1] ?? "";
   const line = (k) => new RegExp(`^${k}:\\s*(.*)$`, "m").exec(front)?.[1]?.split(",").map((s) => s.trim()).filter(Boolean) ?? null;
-  const allow = line("tools");
-  const deny = line("disallowedTools");
-  if (!allow && !deny) {
-    fail(`${name}: neither tools: nor disallowedTools: — it may call everything`);
+  const agent = readAgent(text);
+  if (line("tools")) fail(`${name}: has tools: — an agent's list is pando-tools:, by each tool's own name`);
+  if (!agent.tools || agent.tools.length === 0) {
+    fail(`${name}: no pando-tools: list — the hook would refuse it everything`);
     continue;
   }
-  const pando = (list) => (list ?? []).filter((t) => t.startsWith(P)).map((t) => t.slice(P.length));
-  for (const t of [...pando(allow), ...pando(deny)]) if (!ALL.has(t)) fail(`${name}: names ${t}, which Pando MCP does not have`);
-  const may = new Set(MAY_WRITE[name] ?? []);
-  const writes = allow ? pando(allow).filter((t) => WRITES.includes(t)) : WRITES.filter((t) => !pando(deny).includes(t));
-  if (QUITCODE.includes(name)) for (const w of writes) if (!may.has(w)) fail(`${name}: may call ${w}`);
-  if (deny && !NEVER.every((t) => deny.includes(t))) fail(`${name}: a deny list must deny ${NEVER.join(", ")}`);
-  for (const t of allow ?? []) if (NEVER.includes(t)) fail(`${name}: is given ${t}`);
-  if (GONE.test(text)) fail(`${name}: names a tool that no longer exists (${GONE.exec(text)[0]})`);
-  /* A deciding tool: never in an allowlist, always in a deny list — for every agent, QuitCode's or the client's. */
-  for (const d of DECIDES) {
-    if (allow && pando(allow).includes(d)) fail(`${name}: is given ${d}; only the person decides, in the main conversation`);
-    if (deny && !pando(deny).includes(d)) fail(`${name}: a deny list must deny ${d}`);
+  if (LONG_NAME.test(front)) fail(`${name}: names ${LONG_NAME.exec(front)[0]} — that name holds on one connection only`);
+  const deny = line("disallowedTools") ?? [];
+  if (!NEVER.every((t) => deny.includes(t))) fail(`${name}: disallowedTools must deny ${NEVER.join(", ")}`);
+  for (const t of agent.tools) {
+    if (NEVER.includes(t)) fail(`${name}: is given ${t}`);
+    else if (!SAFE_BUILTINS.includes(t) && !PANDO_ALL.has(t) && !(!QUITCODE.includes(name) && t.includes(":"))) fail(`${name}: names ${t}, which is neither a read tool nor one Pando MCP has`);
   }
+  const writes = agent.tools.filter((t) => PANDO_WRITES.includes(t));
+  const may = new Set(MAY_WRITE[name] ?? []);
+  if (QUITCODE.includes(name)) for (const w of writes) if (!may.has(w)) fail(`${name}: may call ${w}`);
+  /* A deciding tool: never in a list — for every agent, QuitCode's or the client's. */
+  for (const d of PANDO_DECIDES) if (agent.tools.includes(d)) fail(`${name}: is given ${d}; only the person decides, in the main conversation`);
+  if (GONE.test(text)) fail(`${name}: names a tool that no longer exists (${GONE.exec(text)[0]})`);
   const body = text.replace(/^---\n[\s\S]*?\n---/, "");
   if (NAMES_DECIDING.test(body)) fail(`${name}: names ${NAMES_DECIDING.exec(body)[0]} — a decision is shared rule 3's, never an agent's step`);
-  if (!failed) console.log(`ok    ${name.padEnd(18)} ${allow ? "allowlist" : "deny list"}; writes: ${writes.join(", ") || "none"}${QUITCODE.includes(name) ? "" : "  (added by the client)"}`);
+  if (failed === before) console.log(`ok    ${name.padEnd(18)} ${agent.tools.length} tools${agent.accounts ? " + connected accounts" : ""}; writes: ${writes.join(", ") || "none"}${QUITCODE.includes(name) ? "" : "  (added by the client)"}`);
+}
+
+/* The hook is wired: every tool call, the script by the plugin's own path. */
+{
+  const hooks = JSON.parse(fs.readFileSync(path.join(root, "hooks", "hooks.json"), "utf8")).hooks?.PreToolUse ?? [];
+  const wired = hooks.some((h) => h.matcher === "*" && h.hooks?.some((c) => /\$\{CLAUDE_PLUGIN_ROOT\}\/hooks\/agent-tools\.mjs/.test(c.command ?? "")));
+  if (!wired) fail("hooks/hooks.json: the PreToolUse hook for every tool is not wired to hooks/agent-tools.mjs");
 }
 
 const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) => (d.isDirectory() ? walk(path.join(dir, d.name)) : [path.join(dir, d.name)]));

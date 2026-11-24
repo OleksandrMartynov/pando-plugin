@@ -9,12 +9,12 @@ founder says yes to them in the chat.
 
 Pando is on Claude **Team**, so the plugin reaches everyone through the organization:
 
-1. **Owner, once:** Organization settings → Connectors → add **Pando** with exactly the URL in this
-   plugin's `.mcp.json` (`https://pando.is/api/mcp`), so Claude shows one Pando, not two.
-   Then Organization settings → Plugins & skills → Add → Sync from GitHub → this repository (through the
-   Claude GitHub App), and set the plugin to *Installed by default*. Turn on automatic sync.
+1. **Owner, once:** Organization settings → Plugins & skills → Add → Sync from GitHub → this repository
+   (through the Claude GitHub App), and set the plugin to *Installed by default*. Turn on automatic sync.
+   Pando does not need adding under Organization settings → Connectors as well: the plugin brings it.
 2. **Each person:** on the plugin's **Connectors** tab, connect **Pando** and sign in with your Pando
-   admin login. Also connect **Gmail** and **Google Calendar** under Customize → Connectors — the
+   admin login. (Pando connected another way — your own connector, an organization connector — works
+   too; the agents hold to their tool lists on any connection, see *What is here*.) Also connect **Gmail** and **Google Calendar** under Customize → Connectors — the
    partner and daily-brief work reads them (read only: the Coordinator's calendar holds and reminders
    are not built — the features sheet still has them *to confirm*). An admin must have switched Pando MCP on at
    pando.is/admin/mcp.
@@ -101,10 +101,19 @@ one switch in the Pando admin turns the connector off.
 - `skills/research`, `partner-outreach`, `content-ideas`, `source-checks`, `customize` — the workflows,
   each a few phases that hand work to the agents and come back to you before anything is proposed.
 - `agents/` — researcher, fact-checker, source-agent, partner-analyst, writer, marketing,
-  report-builder, strategy-analyst, agent-builder: each with its own tool list and a fixed report
-  format. Every agent has an allowlist (`tools:`) except the Partner analyst, which reads Gmail (whose
-  tool names are not known ahead) and so lists every Pando tool that writes in `disallowedTools:` but
-  `propose_source`; `evals/check-agents.mjs` checks that against the tools Pando MCP has.
+  report-builder, strategy-analyst, agent-builder: each with its own exact tool list and a fixed report
+  format. The list is `pando-tools:`, by each tool's own name (`digest_candidates`, `WebFetch`) — not
+  Claude's `tools:`, which needs the long name `mcp__<connection>__<tool>`, and that name changes with how
+  Pando was connected (through this plugin, as your own connector, from claude.ai, under an ID in the
+  desktop app). A `tools:` list written for one connection left the agent with no tools on another, and
+  Claude refused to start it. The Partner analyst also has `pando-accounts: true`: it may use Gmail and
+  other connected accounts, whose tool names are not known ahead — never a Pando tool off its list.
+  Every agent also has `disallowedTools: Bash, Write, Edit, NotebookEdit`.
+- `hooks/` — `agent-tools.mjs` holds each Pando agent to its `pando-tools:` list before every call, on
+  any connection (tested 24 Nov on four: plugin, `pando`, `claude_ai_Pando`, an ID). It runs with
+  `node`; the main conversation and other plugins' agents are not touched. Pando's own server is still
+  the boundary that needs no hook: a read-only sign-in cannot propose, a change is only a proposal, and
+  only you decide one.
 - `evals/` — realistic tasks run by real Claude Code with this plugin (a planted instruction in a partner's
   reply among them); run them before a release. `node evals/check-agents.mjs` checks, with no Claude and
   no network, that every agent may call only the Pando tools it should — run it whenever Pando MCP gains

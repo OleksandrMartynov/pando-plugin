@@ -24,7 +24,7 @@ const tasks = JSON.parse(fs.readFileSync(new URL("./tasks.json", import.meta.url
   opt("--only") ? t.id === opt("--only") : args.includes("--all") || !t.slow,
 );
 
-const short = (n) => n.replace(/^mcp__plugin_pando_pando__/, "");
+const short = (n) => (n.startsWith("mcp__") ? n.slice(n.lastIndexOf("__") + 2) : n);
 const matches = (name, pattern) => (pattern.endsWith("*") ? name.startsWith(pattern.slice(0, -1)) : name === pattern);
 let failed = 0;
 

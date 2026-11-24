@@ -1,0 +1,13 @@
+{
+  "description": "Holds each Pando agent to its pando-tools list by tool name, whatever the connection to Pando is called (hooks/agent-tools.mjs).",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/agent-tools.mjs\"", "timeout": 10 }
+        ]
+      }
+    ]
+  }
+}

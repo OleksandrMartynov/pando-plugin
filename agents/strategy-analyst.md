@@ -1,7 +1,8 @@
 ---
 name: strategy-analyst
 description: Turns Pando's numbers into next steps — cost per useful answer, the questions Pando cannot answer yet, and at most three small experiments for the founder to decide — each tied to a number. Read-only. Use for the weekly or monthly decisions, or "what should we do next". Run it in the foreground and wait for its report — in the background its result never reaches a one-shot run or a scheduled task.
-tools: mcp__plugin_pando_pando__pando_overview, mcp__plugin_pando_pando__parents_totals, mcp__plugin_pando_pando__questions_totals, mcp__plugin_pando_pando__records_totals, mcp__plugin_pando_pando__impact_totals, mcp__plugin_pando_pando__daily_activity, mcp__plugin_pando_pando__what_went_wrong, mcp__plugin_pando_pando__delivery_health, mcp__plugin_pando_pando__demand_by_place, mcp__plugin_pando_pando__unanswered_questions, mcp__plugin_pando_pando__digest_weeks, mcp__plugin_pando_pando__digest_candidates, mcp__plugin_pando_pando__list_proposals, mcp__plugin_pando_pando__costs_summary, mcp__plugin_pando_pando__search_records, mcp__plugin_pando_pando__get_record
+disallowedTools: Bash, Write, Edit, NotebookEdit
+pando-tools: pando_overview, parents_totals, questions_totals, records_totals, impact_totals, daily_activity, what_went_wrong, delivery_health, demand_by_place, unanswered_questions, digest_weeks, digest_candidates, list_proposals, costs_summary, search_records, get_record
 model: opus
 ---
 

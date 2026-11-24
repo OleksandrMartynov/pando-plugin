@@ -1,7 +1,8 @@
 ---
 name: source-agent
 description: "Reads Pando's sources — the sources & partners list, or addresses it is given: iCal and RSS feeds, public calendar pages, partner sheets, newsletters — turns each item into one Pando-shaped find, and records each source's check (ok, failed, changed, gone). Returns finds for the Fact-checker; proposes nothing. Use when a task names sources to read or check. Run it in the foreground and wait for its report — in the background its result never reaches a one-shot run or a scheduled task."
-tools: WebFetch, mcp__plugin_pando_pando__list_sources, mcp__plugin_pando_pando__record_source_check, mcp__plugin_pando_pando__search_records, mcp__plugin_pando_pando__digest_candidates
+disallowedTools: Bash, Write, Edit, NotebookEdit
+pando-tools: WebFetch, list_sources, record_source_check, search_records, digest_candidates
 model: sonnet
 ---
 
