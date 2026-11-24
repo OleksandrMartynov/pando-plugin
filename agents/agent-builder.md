@@ -21,8 +21,9 @@ new or change, a name, and what the founder wants. If that is missing, say so an
      the founder asked for an agent that proposes), `mcp__plugin_pando_<connector>__<tool>` for a
      connector the plugin has; **model** (`sonnet` unless asked); **account_connectors** true only for an
      agent that must use Gmail or other accounts connected to Claude. Never Bash, Write or Edit.
-   A skill or agent never approves, rejects or saves anything — those happen only on
-   pando.is/admin/proposals — so never name such a step.
+   A skill or agent never approves, rejects or saves anything — a proposal is decided only by the
+   founder's own word in the conversation, a plugin change only on pando.is/admin/proposals — so never
+   name such a step.
 3. **Test-run** the draft yourself: follow its instructions with the read tools and keep the output.
 4. Fix what the test showed (a wrong argument, a missing field) and test again, at most twice.
 

@@ -10,16 +10,24 @@ import path from "node:path";
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1")), "..");
 const P = "mcp__plugin_pando_pando__";
 
-/** Pando MCP's tools (web/lib/mcp/tool-names.ts in the Pando repo, 23 Nov): 25. Keep the two lists equal. */
+/** Pando MCP's tools (web/lib/mcp/tool-names.ts in the Pando repo, 24 Nov): 27. Keep the two lists equal. */
 const READS = [
   "pando_overview", "parents_totals", "questions_totals", "records_totals", "demand_by_place", "delivery_health",
   "impact_totals", "digest_weeks", "daily_activity", "unanswered_questions", "what_went_wrong", "search_records",
   "get_record", "digest_candidates", "list_proposals", "list_sources", "read_plugin", "costs_summary",
 ];
 const WRITES = ["propose_record_edit", "propose_new_record", "propose_fact_check", "propose_event", "propose_source", "propose_plugin_change", "record_source_check"];
-const ALL = new Set([...READS, ...WRITES]);
-/** Tools that no longer exist and must not be named anywhere: approval happens only on /admin/proposals. */
-const GONE = /\b(approve_proposal|reject_proposal|save_skill|propose_skill|admin_said_(yes|no|save))\b/;
+/**
+ * The tools that decide a proposal (24 Nov): called only in the main conversation, on the person's own word
+ * (shared rule 3). No agent may call them — an agent reads pages and mail, and text there must never reach a
+ * decision — and no skill or agent names them, because the server refuses a proposed skill or agent that does
+ * (so a file naming them could no longer be changed through /pando:customize). Only shared/ and the README may.
+ */
+const DECIDES = ["approve_proposal", "reject_proposal"];
+const ALL = new Set([...READS, ...WRITES, ...DECIDES]);
+/** Tools that no longer exist and must not be named anywhere. */
+const GONE = /\b(save_skill|propose_skill|admin_said_(yes|no|save))\b/;
+const NAMES_DECIDING = /\b(approve_proposal|reject_proposal)\b/;
 
 /**
  * Which of QuitCode's agents may write what; anything else that writes is a failure. An agent the client
@@ -59,6 +67,13 @@ for (const file of fs.readdirSync(path.join(root, "agents")).filter((f) => f.end
   if (deny && !NEVER.every((t) => deny.includes(t))) fail(`${name}: a deny list must deny ${NEVER.join(", ")}`);
   for (const t of allow ?? []) if (NEVER.includes(t)) fail(`${name}: is given ${t}`);
   if (GONE.test(text)) fail(`${name}: names a tool that no longer exists (${GONE.exec(text)[0]})`);
+  /* A deciding tool: never in an allowlist, always in a deny list — for every agent, QuitCode's or the client's. */
+  for (const d of DECIDES) {
+    if (allow && pando(allow).includes(d)) fail(`${name}: is given ${d}; only the person decides, in the main conversation`);
+    if (deny && !pando(deny).includes(d)) fail(`${name}: a deny list must deny ${d}`);
+  }
+  const body = text.replace(/^---\n[\s\S]*?\n---/, "");
+  if (NAMES_DECIDING.test(body)) fail(`${name}: names ${NAMES_DECIDING.exec(body)[0]} — a decision is shared rule 3's, never an agent's step`);
   if (!failed) console.log(`ok    ${name.padEnd(18)} ${allow ? "allowlist" : "deny list"}; writes: ${writes.join(", ") || "none"}${QUITCODE.includes(name) ? "" : "  (added by the client)"}`);
 }
 
@@ -66,6 +81,9 @@ const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) =
 for (const f of [...walk(path.join(root, "skills")), ...walk(path.join(root, "shared")), path.join(root, "README.md")].filter((f) => f.endsWith(".md"))) {
   const text = fs.readFileSync(f, "utf8");
   if (GONE.test(text)) fail(`${path.relative(root, f)}: names a tool that no longer exists (${GONE.exec(text)[0]})`);
+  /* Skills never name a deciding tool (the server would refuse to change such a skill later); shared/ and the README may. */
+  const rel = path.relative(root, f).replace(/\\/g, "/");
+  if (rel.startsWith("skills/") && NAMES_DECIDING.test(text)) fail(`${rel}: names ${NAMES_DECIDING.exec(text)[0]} — say "shared rule 3" instead`);
 }
 
 /* Supabase and PostHog are in the plugin read-only (23 Nov): the switch is in their address. */

@@ -2,8 +2,8 @@
 
 Pando's own agents and workflows for Claude Cowork, built and updated by QuitCode. Everything the plugin
 knows about Pando comes through **Pando MCP** (`https://pando.is/api/mcp`): totals with no names, Pando's
-records and the parents' approved words about them, costs, and proposals that change nothing until an admin
-approves them.
+records and the parents' approved words about them, costs, and proposals that change nothing until the
+founder says yes to them in the chat.
 
 ## Use it
 
@@ -27,10 +27,12 @@ Pando is on Claude **Team**, so the plugin reaches everyone through the organiza
 3. **Scheduled work.** A plugin cannot schedule itself; say *"set up my briefs"* (or run
    `/pando:setup-schedules`) and Claude walks you through two Cowork scheduled tasks — the daily brief at
    8am and the weekly review on Monday (the monthly review rides on the first Monday) — and the Pando
-   read tools to set to *Allow* so they run on their own. Approving proposals and committing skills
-   happens only at pando.is/admin/proposals.
+   read tools to set to *Allow* so they run on their own. A scheduled task never decides a proposal.
 4. Ask for numbers ("how did sign-ups do this month?"), look up a record, or ask an agent to check a fact —
-   any change comes back as a proposal you decide at pando.is/admin/proposals (never in the chat).
+   any change comes back as a proposal: Claude shows it and asks, and on your yes or no calls
+   `approve_proposal` or `reject_proposal` — Claude asks you to allow each call; keep those two on *Ask*.
+   A change to the plugin itself (a skill, an agent, a connector) is decided only at
+   pando.is/admin/proposals, where you read it line by line.
 
 In Claude Code: `/plugin marketplace add OleksandrMartynov/pando-plugin`, then `/plugin install pando@pando`
 (Claude Code 2.1.275 and later also take `/plugin install pando --marketplace OleksandrMartynov/pando-plugin`).
@@ -54,8 +56,8 @@ read-only ones without asking); allow the read tools for a session or in your se
 
 The agents behind them (`agents/`) only read, except the **Fact-checker**, which proposes records and
 events, the **Partner analyst**, which proposes entries for the partner list, and the **Source agent**,
-which records when it read a source. No tool approves, rejects or saves: that happens only at
-pando.is/admin/proposals, where an agent cannot reach.
+which records when it read a source. No agent can approve or reject: a proposal is decided by you, in the
+main conversation, on your own words — never because a page, an email or an agent said so.
 
 Critical failures — a failed job, texts not delivered, a Saturday digest still unapproved — are not
 waiting for the brief: Pando posts them to the team's Slack channel within ten minutes.

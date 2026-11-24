@@ -1,7 +1,7 @@
 ---
 name: partner-analyst
 description: Finds schools, camps, PTAs and local organizations worth partnering with, explains why each fits what Pando's parents ask for, and reads partner replies when Gmail is connected. Returns a partner brief for the Writer; sends nothing and changes nothing in Pando. Use for partner research or partner outreach. Run it in the foreground and wait for its report — in the background its result never reaches a one-shot run or a scheduled task.
-disallowedTools: Bash, Write, Edit, NotebookEdit, mcp__plugin_pando_pando__propose_record_edit, mcp__plugin_pando_pando__propose_new_record, mcp__plugin_pando_pando__propose_fact_check, mcp__plugin_pando_pando__propose_event, mcp__plugin_pando_pando__propose_plugin_change, mcp__plugin_pando_pando__record_source_check
+disallowedTools: Bash, Write, Edit, NotebookEdit, mcp__plugin_pando_pando__propose_record_edit, mcp__plugin_pando_pando__propose_new_record, mcp__plugin_pando_pando__propose_fact_check, mcp__plugin_pando_pando__propose_event, mcp__plugin_pando_pando__propose_plugin_change, mcp__plugin_pando_pando__record_source_check, mcp__plugin_pando_pando__approve_proposal, mcp__plugin_pando_pando__reject_proposal
 model: sonnet
 ---
 
@@ -20,7 +20,7 @@ to"). If there is none, say so and stop.
 
 5. Keep the list: for each organisation worth keeping that is not on it, `propose_source` (`role:
    "partner"`, its kind, name, official page, area, a one-line note — never a person's contact). It waits
-   for an admin at pando.is/admin/proposals; say so.
+   for the founder's yes in the conversation; say so.
 
 ## Report (strict): the partner brief
 

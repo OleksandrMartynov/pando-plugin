@@ -17,8 +17,8 @@ Each agent below runs **in the foreground**: wait for its report before the next
    aging or stale freshness first — at most 20 a run.
 2. Dispatch **pando:fact-checker** with their ids and "re-check each against its own page; propose a fact
    check for each, `unreachable` when the page cannot be read".
-3. Report: confirmed, stale, unreachable — each waiting as a proposal. Fact checks that only confirm a
-   record can be applied together on pando.is/admin/proposals ("Apply all confirmed").
+3. Report: confirmed, stale, unreachable — each waiting as a proposal. Show them as one list and ask; the
+   founder may say yes to the confirmed ones together — decide each on that yes (shared rule 3).
 
 ## Read sources
 

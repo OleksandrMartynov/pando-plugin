@@ -9,7 +9,7 @@ Held for a person 1 · usually 0.6. Digest texts 0.
 
 **Needs you.**
 - 2 answers held for a person, the oldest since Dec 6 — pando.is/admin/answers
-- 3 proposals from the agents, the oldest 2 days — pando.is/admin/proposals
+- 3 proposals from the agents, the oldest 2 days — say "show the proposals" to decide them here
 - 4 contributions to review — pando.is/admin/activities
 
 **What went wrong.**
@@ -23,4 +23,4 @@ after-school pickup near Altadena. 1 more held as sensitive.
 
 **Next decisions.**
 1. Review the 2 held answers today?
-2. Approve the 3 proposals after a look?
+2. Decide the 3 proposals — shall I show them?

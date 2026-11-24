@@ -2,7 +2,7 @@
 
 | Waiting | Page |
 | --- | --- |
-| Proposals from the agents | pando.is/admin/proposals |
+| Proposals from the agents | here in the conversation ("show the proposals"); a plugin change at pando.is/admin/proposals |
 | Answers held for a person | pando.is/admin/answers |
 | A digest waiting for approval | pando.is/admin/digests |
 | Contributions to review | pando.is/admin/activities |

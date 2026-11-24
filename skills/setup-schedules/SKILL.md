@@ -46,8 +46,9 @@ Connectors → **Pando**, set every tool of kind **read** in the `pando-data` ca
 `digest_weeks`, `digest_candidates`, `list_proposals`, `costs_summary`, `search_records`, `get_record`,
 `list_sources`.
 
-Keep the `propose_*` tools and `record_source_check` on **Ask**: the briefs never use them. No tool
-approves anything — proposals are decided only at pando.is/admin/proposals.
+Keep the `propose_*` tools, `record_source_check` and the two tools that decide a proposal on **Ask**:
+the briefs never use them, and a scheduled task never decides — a proposal is decided only by a person,
+in a conversation (shared rule 3).
 
 ## 4. Try it once
 

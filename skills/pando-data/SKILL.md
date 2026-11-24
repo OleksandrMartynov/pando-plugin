@@ -14,8 +14,9 @@ connectors reach Pando's raw data — see [Supabase and PostHog](#supabase-and-p
 
 ## Catalogue
 
-Kind: **read** — runs without changing anything; **propose** — creates a proposal that waits for an admin
-on pando.is/admin/proposals; **check** — records when a source was read and how that went.
+Kind: **read** — runs without changing anything; **propose** — creates a proposal that waits for the
+founder's yes in the conversation; **check** — records when a source was read and how that went. Two
+more tools decide a waiting proposal — used only as shared rule 3 says, never as a step of a workflow.
 
 | Question | Tool | Kind |
 | --- | --- | --- |
@@ -74,6 +75,6 @@ the person would need to look up in the Pando admin instead.
 
 How to make each kind of proposal: [references/proposals.md](references/proposals.md).
 
-A proposal changes nothing until an admin decides it on pando.is/admin/proposals — the only place
-proposals are decided (shared rule 3). Tell the user what you proposed, that it waits, and give the link.
+A proposal changes nothing until the founder says yes to it here in the conversation (shared rule 3);
+a change to the plugin itself only at pando.is/admin/proposals. Tell the user what you proposed and ask.
 A record's `trust_labels` are the only words for where it came from (shared rule 6).
