@@ -33,6 +33,11 @@ const fail = (m) => {
   console.log(`FAIL  ${m}`);
 };
 
+/* "About Pando" (25 Nov): an agent cannot read shared/, so each of QuitCode's agents carries the block word for word. */
+const ABOUT = /<!-- about-pando:start -->[\s\S]*?<!-- about-pando:end -->/;
+const aboutSource = ABOUT.exec(fs.readFileSync(path.join(root, "shared", "pando-context.md"), "utf8").replace(/\r\n/g, "\n"))?.[0] ?? null;
+if (!aboutSource) fail("shared/pando-context.md: the about-pando block is missing");
+
 /* The hook itself, on the calls that matter: a listed tool on three connections, an unlisted one, a decision. */
 {
   const a = { tools: ["WebFetch", "search_records"], accounts: false };
@@ -78,6 +83,7 @@ for (const file of fs.readdirSync(path.join(root, "agents")).filter((f) => f.end
   if (GONE.test(text)) fail(`${name}: names a tool that no longer exists (${GONE.exec(text)[0]})`);
   const body = text.replace(/^---\n[\s\S]*?\n---/, "");
   if (NAMES_DECIDING.test(body)) fail(`${name}: names ${NAMES_DECIDING.exec(body)[0]} — a decision is shared rule 3's, never an agent's step`);
+  if (QUITCODE.includes(name) && aboutSource && ABOUT.exec(text)?.[0] !== aboutSource) fail(`${name}: its "About Pando" block is missing or differs from shared/pando-context.md — copy it word for word`);
   if (failed === before) console.log(`ok    ${name.padEnd(18)} ${agent.tools.length} tools${agent.accounts ? " + connected accounts" : ""}; writes: ${writes.join(", ") || "none"}${QUITCODE.includes(name) ? "" : "  (added by the client)"}`);
 }
 

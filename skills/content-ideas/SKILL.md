@@ -13,6 +13,6 @@ Each agent below runs **in the foreground**: wait for its report before the next
 1. **The week or theme.** Default: the coming Saturday's digest.
 2. **Posts (Marketing).** Dispatch **pando:marketing** with the week or theme and "two posts: one carousel,
    one single". Only verified events — digest candidates and the digest's own items.
-3. **Newsletter (Writer)**, only if asked: dispatch **pando:writer** with the same verified events and "one
-   newsletter item, 120 words".
+3. **Newsletter (Writer)**, only if asked: dispatch **pando:writer** with the same verified events (with their price and popular when the tools gave
+   them) and "a newsletter, in your newsletter format, 120 words".
 4. **Hand over.** The drafts with their sources. Nothing is posted: the founder posts them herself.

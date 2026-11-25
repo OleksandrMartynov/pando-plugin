@@ -28,7 +28,9 @@ or none.
 
 ## Phase 4 — confirm and propose (Fact-checker)
 
-Dispatch **pando:fact-checker** with only the finds the founder chose (title, page, facts, new/already).
+Dispatch **pando:fact-checker** with only the finds the founder chose (title, page, facts, new/already),
+with each find's kind, who it is for, and its price, about and popular as the Researcher reported them
+(the Fact-checker checks each again on the page).
 It proposes what holds and reports what it could not confirm.
 
 ## Phase 5 — close
