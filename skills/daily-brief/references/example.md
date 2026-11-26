@@ -24,7 +24,8 @@ for rarely answering. No opt-outs after a request.
 Altadena Library calendar failed (page not answering) — run Source checks; Pasadena Parks feed moved —
 new address in the Source agent's report; Arcadia PTA newsletter missed since Dec 1 — run Source checks.
 
-**Money.** This month so far: SMS $41.20 · AI $18.75.
+**Money.** This month so far: SMS $41.20 of $200, $158.80 left, on pace for $182.46 · AI $18.75 of $100,
+$81.25 left, on pace for $83.04.
 
 **What parents are asking for.** Weekend swim lessons for toddlers; a Spanish-speaking pediatrician;
 after-school pickup near Altadena. 1 more held as sensitive.

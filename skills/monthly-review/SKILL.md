@@ -21,7 +21,7 @@ tool that fails or times out is retried once, then named and skipped.
 | 3 | `impact_totals` `{"from": "<1st of last month>", "to": "<its last day>"}` | helped yes / no / awaiting / never asked, for last month's answers |
 | 4 | `records_totals` `{}` | approved by freshness, waiting for review |
 | 5 | `demand_by_place` `{}` | where Pando is wanted |
-| 6 | `costs_summary` `{"from": "<1st of last month>", "to": "<its last day>"}` | `sms.total`, `ai.total_usd`, `useful_answers`, `cost_per_useful_answer` |
+| 6 | `costs_summary` `{"from": "<1st of last month>", "to": "<its last day>"}` | `sms.total`, `ai.total_usd`, `useful_answers`, `cost_per_useful_answer`, `budget.sms` / `budget.ai` (`spent`, `budget`, `over`) |
 | 7 | `costs_summary` `{"from": "<1st of the month before>", "to": "<its last day>"}` | the same, to compare |
 | 8 | `digest_weeks` `{}` | the month's Saturdays: groups, families, failed |
 | 9 | `unanswered_questions` `{"days": 31, "limit": 50}` | topics, and the counts not quoted |
@@ -34,7 +34,8 @@ tool that fails or times out is retried once, then named and skipped.
 
 1. **The month in five numbers**, each beside the month before: sign-ups, questions, answers that helped,
    digest families, total cost.
-2. **Cost per useful answer**, this month and the one before (shared definition).
+2. **Cost per useful answer**, this month and the one before (shared definition). Then SMS and AI each
+   against its monthly budget when one is set (`budget`): spent of budget, and over or under by how much.
 3. **What worked** and **what did not**, one line each with the number that shows it.
 4. **Biggest demand gaps** — up to five topics from the unanswered questions, with counts.
 5. **Reliability** — how often something went wrong, and whether the same thing repeated; how many active

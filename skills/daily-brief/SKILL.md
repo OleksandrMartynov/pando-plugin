@@ -19,7 +19,7 @@ fails is named in its section and the brief goes on.
 | 2 | `what_went_wrong` `{"days": 1}` | `failed_jobs`, `unfinished_jobs`, `undelivered_texts`, `digest_groups_not_ready`, `answers_held_over_a_day` + `oldest_held_since`, `mcp_tool_problems` |
 | 3 | `pando_overview` `{}` | the review queues |
 | 4 | `list_proposals` `{"status": "proposed"}` | `results`: how many, the oldest `created_at` |
-| 5 | `costs_summary` `{"from": "<1st of this month>", "to": "<yesterday>"}` | `sms.total` + `sms.currency`, `ai.total_usd`; `configured: false` = "not configured" |
+| 5 | `costs_summary` `{"from": "<1st of this month>", "to": "<yesterday>"}` (on the 1st: last month, its 1st to its last day) | `sms.total` + `sms.currency`, `ai.total_usd`; `configured: false` = "not configured"; `budget.sms` / `budget.ai`: `left`, `on_pace_for`, `over` |
 | 6 | `unanswered_questions` `{"days": 1, "limit": 10}` | `texted[].question`; the counts in `held_not_quoted` |
 | 7 | Friday or Saturday (Pacific) only: `digest_weeks` `{"week": "<this Saturday>"}` | `totals`; each group's `status` and `approval` (`awaiting` = waits for the founder) |
 | 8 | `list_sources` `{"role": "source"}` | each source's `last_check` and `last_checked_at`: how many were read yesterday (Pacific) and how each went; any active source never read or not read for over 7 days |
@@ -56,8 +56,10 @@ read or not read for over 7 days — a check that did not run counts as a failur
 never as quiet. Name at most three blockers (failed, gone, missed), each with its next step (the Source
 checks workflow, or pausing it — the founder's call). No sources on the list: "No sources on the list yet."
 
-**Money.** SMS and AI this month so far; a half "not configured" is said so. When the scheduled task or
-the founder names a monthly budget, add what is left of it; otherwise say nothing of a budget.
+**Money.** SMS and AI this month so far; a half "not configured" is said so. Beside each half that has a
+budget (`budget.sms`, `budget.ai` — set on /admin): what is left and, when given, the month at this pace
+(`on_pace_for`). A half over its budget (`over`), or on pace to pass it, is also a problem under **What went
+wrong** — owner the founder. `budget` null, or a half null: say nothing of that budget.
 
 Critical problems — texts failing, jobs stopped — are texted by Pando the moment they happen; this brief
 repeats them, it is not the alarm.
