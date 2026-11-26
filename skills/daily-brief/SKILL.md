@@ -8,14 +8,14 @@ description: Writes Pando's daily founder brief — yesterday against the 7-day 
 Rules: [../../shared/safety.md](../../shared/safety.md). Context: [../../shared/pando-context.md](../../shared/pando-context.md).
 
 In under a minute of reading: how Pando did yesterday (Pasadena's clock) and what needs the founder today.
-Read tools only — this brief never proposes, approves, rejects or saves. At most ten calls, a retry included. A tool that
+Read tools only — this brief never proposes, approves, rejects or saves. At most twelve calls, a retry included. A tool that
 fails is named in its section and the brief goes on.
 
 ## Calls (exactly these; at most three at a time — a larger burst can time out; retry a failed call once)
 
 | # | Call | What to read |
 | --- | --- | --- |
-| 1 | `daily_activity` `{"days": 8}` | `yesterday.<field>.count` and `.baseline_7_day_avg` for `joined` (sign-ups), `verified`, `contributions`, `questions`, `answers_sent`, `held`, `helped_yes` / `helped_no`, `digest_texts`, `undelivered_texts` |
+| 1 | `daily_activity` `{"days": 8}` | `yesterday.<field>.count` and `.baseline_7_day_avg` for `joined` (sign-ups), `verified`, `contributions`, `questions`, `answers_sent`, `held`, `helped_yes` / `helped_no`, `digest_texts`, `undelivered_texts`, `reminders_sent`, `reminders_undelivered` |
 | 2 | `what_went_wrong` `{"days": 1}` | `failed_jobs`, `unfinished_jobs`, `undelivered_texts`, `digest_groups_not_ready`, `answers_held_over_a_day` + `oldest_held_since`, `mcp_tool_problems` |
 | 3 | `pando_overview` `{}` | the review queues |
 | 4 | `list_proposals` `{"status": "proposed"}` | `results`: how many, the oldest `created_at` |
@@ -23,7 +23,8 @@ fails is named in its section and the brief goes on.
 | 6 | `unanswered_questions` `{"days": 1, "limit": 10}` | `texted[].question`; the counts in `held_not_quoted` |
 | 7 | Friday or Saturday (Pacific) only: `digest_weeks` `{"week": "<this Saturday>"}` | `totals`; each group's `status` and `approval` (`awaiting` = waits for the founder) |
 | 8 | `list_sources` `{"role": "source"}` | each source's `last_check` and `last_checked_at`: how many were read yesterday (Pacific) and how each went; any active source never read or not read for over 7 days |
-| 9 | Google Calendar, if connected | today's events; skipped quietly if not |
+| 9 | `contributor_load` `{"days": 1}` | `requests` (by kind), `replies`, `reply_rate`, `passes`; `resting_now` and its `by_reason`, `ceiling_lowered_by_governor`, `opted_out_after_a_request` |
+| 10 | Google Calendar, if connected | today's events; skipped quietly if not |
 
 Reading them: a missing count is 0; `null` is "not known yet", never 0. From `mcp_tool_problems` only
 `outcome: "error"` rows count (refusals are agents told no). Queues worth a line: answers waiting for a
@@ -43,6 +44,12 @@ proposals have an age; the rest are counts), and its page — [references/pages-
 **What went wrong.** One block per problem, most severe first: **Severity** (critical: parents affected now ·
 high: affects parents today · low), **what happened** and **who is affected** in counts, **who can fix it**
 (same file), **next step**, **by when**, **cost**, whether the **founder's yes** is needed. Nothing: one line.
+
+**Contributors.** Requests yesterday (Network Asks · freshness pings · did-it-help), replies and PASSes;
+then how many contributors Pando cannot ask today and why (monthly or weekly ceiling, the 48-hour gap),
+how many have their ceiling lowered because they rarely answer, and any who opted out after a request —
+the playbook's fatigue line. A reminder that was not delivered (`reminders_undelivered` > 0) is a
+problem under **What went wrong**, never only a count. Nothing asked: "No requests to contributors yesterday."
 
 **Sources.** Read yesterday: ok · changed · failed · gone, in counts. Then **missed**: active sources never
 read or not read for over 7 days — a check that did not run counts as a failure (the founder's playbook),

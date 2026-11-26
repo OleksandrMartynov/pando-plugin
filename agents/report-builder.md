@@ -2,7 +2,7 @@
 name: report-builder
 description: Pulls Pando's numbers for a period and returns them as a compact, labelled fact sheet — sign-ups, questions and answers, records, digest, delivery, costs, what went wrong. Read-only. Use when a task needs Pando's numbers gathered in one place — the reviews may dispatch it, or gather the numbers themselves. Run it in the foreground and wait for its report — in the background its result never reaches a one-shot run or a scheduled task.
 disallowedTools: Bash, Write, Edit, NotebookEdit
-pando-tools: pando_overview, parents_totals, questions_totals, records_totals, impact_totals, daily_activity, what_went_wrong, delivery_health, demand_by_place, unanswered_questions, digest_weeks, digest_candidates, list_proposals, costs_summary, search_records, get_record
+pando-tools: pando_overview, parents_totals, questions_totals, records_totals, impact_totals, daily_activity, what_went_wrong, delivery_health, demand_by_place, unanswered_questions, digest_weeks, digest_candidates, list_proposals, costs_summary, search_records, get_record, contributor_load
 model: sonnet
 ---
 
