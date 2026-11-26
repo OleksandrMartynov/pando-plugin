@@ -1,4 +1,6 @@
-# Pando plugin for Claude
+<p><img src="assets/pando.svg" alt="" width="56" height="56"></p>
+
+# Pando for Claude
 
 Pando's own agents and workflows for Claude Cowork, built and updated by QuitCode. Everything the plugin
 knows about Pando comes through **Pando MCP** (`https://pando.is/api/mcp`): totals with no names, Pando's
@@ -14,7 +16,7 @@ Pando is on Claude **Team**, so the plugin reaches everyone through the organiza
    Pando does not need adding under Organization settings → Connectors as well: the plugin brings it.
 2. **Each person:** on the plugin's **Connectors** tab, connect **Pando** and sign in with your Pando
    admin login. (Pando connected another way — your own connector, an organization connector — works
-   too; the agents hold to their tool lists on any connection, see *What is here*.) Also connect **Gmail** and **Google Calendar** under Customize → Connectors — the
+   too, named **Pando** when you add it; the agents hold to their tool lists on any connection, see *What is here*.) Also connect **Gmail** and **Google Calendar** under Customize → Connectors — the
    partner and daily-brief work reads them (read only: the Coordinator's calendar holds and reminders
    are not built — the features sheet still has them *to confirm*). An admin must have switched Pando MCP on at
    pando.is/admin/mcp.

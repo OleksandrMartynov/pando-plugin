@@ -3,12 +3,21 @@
   "owner": {
     "name": "QuitCode"
   },
-  "description": "QuitCode's Pando plugin for Claude Cowork: Pando's agents, briefs and workflows through Pando MCP.",
+  "description": "Pando's plugin for Claude, built by QuitCode.",
   "plugins": [
     {
       "name": "pando",
       "source": "./",
-      "description": "Pando's agents and workflows for Claude Cowork, through Pando MCP."
+      "displayName": "Pando",
+      "description": "The daily brief, reviews, research and outreach for Pando, in Claude, from Pando's own data.",
+      "homepage": "https://pando.is",
+      "category": "productivity",
+      "tags": [
+        "pando",
+        "parents",
+        "briefs",
+        "research"
+      ]
     }
   ]
 }
