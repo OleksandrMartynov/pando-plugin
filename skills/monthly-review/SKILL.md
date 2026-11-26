@@ -26,6 +26,7 @@ tool that fails or times out is retried once, then named and skipped.
 | 8 | `digest_weeks` `{}` | the month's Saturdays: groups, families, failed |
 | 9 | `unanswered_questions` `{"days": 31, "limit": 50}` | topics, and the counts not quoted |
 | 10 | `what_went_wrong` `{"days": 30}` | problems, and whether one repeated |
+| 11 | `list_sources` `{"role": "source"}` | active sources, and how many failed, went or were not read this month |
 
 ## The review (strict template)
 
@@ -36,7 +37,8 @@ tool that fails or times out is retried once, then named and skipped.
 2. **Cost per useful answer**, this month and the one before (shared definition).
 3. **What worked** and **what did not**, one line each with the number that shows it.
 4. **Biggest demand gaps** — up to five topics from the unanswered questions, with counts.
-5. **Reliability** — how often something went wrong, and whether the same thing repeated.
+5. **Reliability** — how often something went wrong, and whether the same thing repeated; how many active
+   sources there are and how many failed, went or were not read this month.
 6. **Decisions.** For each candidate — a digest change, a kind of record to add, an outreach push, a cost
    to cut — **Stop**, **Continue** or **Scale**, with its evidence in one line and what it would cost. At
    most five. Too little evidence: "test first", and the test.

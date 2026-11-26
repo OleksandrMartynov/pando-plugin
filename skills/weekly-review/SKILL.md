@@ -26,6 +26,7 @@ Call these with exactly these arguments:
 | 7 | `records_totals` `{}` | `approved_by_freshness` (a missing key is 0), records waiting for review |
 | 8 | `delivery_health` `{"days": 7}` and `what_went_wrong` `{"days": 7}` | a `null` rate means "no delivery reports yet" |
 | 9 | `pando_overview` `{}` | `drop_off`: the sign-up steps |
+| 10 | `list_sources` `{"role": "source"}` and `list_sources` `{"role": "partner"}` | every active source's `last_check` and `last_checked_at`; how many partners |
 
 Rules:
 - **The weeks.** The weekly lists end with the current week, which is not over: leave it out. "Last week"
@@ -56,9 +57,15 @@ Rules:
 6. **Records.** Approved records that went stale; records waiting for review.
 7. **What went wrong this week.** Problems by severity, each with its owner (QuitCode for technical,
    Janet for content and approvals) and whether it is fixed.
-8. **Not tracked yet.** The list in the shared context, said plainly.
-9. **Experiments to decide.** At most three small, cheap experiments for next week, each tied to a number
-   above: what to try, what would count as success, what it costs. Janet decides; nothing starts here.
+8. **Sources and partners.** Every active source accounted for: how many read last week and how each went
+   (ok, changed, failed, gone), and **missed** — not read at all last week, which counts as a failure.
+   Name each that failed, went or was missed, with its next step (the Source checks workflow, or pausing
+   it — the founder decides). Then how many partners are on the list. Signed partnerships, attribution,
+   cohort retention and cash are not in Pando yet: say so.
+9. **Not tracked yet.** The list in the shared context, said plainly.
+10. **Experiments to decide.** At most three small, cheap experiments for next week, each tied to a number
+   above: what to try, what would count as success, what it costs. Then, when the numbers say so, one
+   thing to stop — the playbook's roadmap challenge. Janet decides; nothing starts here.
 
 ## On the first Monday of a month
 

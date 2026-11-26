@@ -21,8 +21,10 @@ Dispatch **pando:partner-analyst** with the goal, and "read replies" if the foun
 
 ## Phase 3 — choose
 
-Show the brief: name, why it fits (the parents' need in counts), the ask, the public contact route. Ask
-which to write to.
+Show the brief: name, why it fits (the parents' need in counts), warm or cold, the ask (the lowest rung
+that would work: a public link or calendar first), the public contact route. Ask which to write to.
+The analyst may have proposed new partners for the sources & partners list: show each — name, page, why —
+and ask the founder yes or no; decide each only on her own word (shared rule 3).
 
 ## Phase 4 — drafts (Writer)
 

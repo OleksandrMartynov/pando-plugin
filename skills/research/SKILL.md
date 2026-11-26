@@ -12,7 +12,8 @@ Each agent below runs **in the foreground**: wait for its report before the next
 
 ## Phase 1 — the question
 
-Restate it in one line: what, where (Pando's areas), which ages, which dates. Ask only if "what" is missing.
+Restate it in one line: what, where (Pando's areas), who it is for (a child and their age, or the adult
+asking), which dates. Ask only if "what" is missing.
 
 ## Phase 2 — find (Researcher)
 
@@ -22,7 +23,8 @@ carries everything.
 
 ## Phase 3 — show the founder
 
-A short list, best first: title, when (and registration), where, ages, its page — every unconfirmed fact
+A short list, best first: title, when (and registration), where, ages or "for adults", price and popular
+when the page gave them, its page — every unconfirmed fact
 marked *not confirmed*, and **new** or **already in Pando**. Then ask which to propose: all new ones, some,
 or none.
 

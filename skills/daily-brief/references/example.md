@@ -16,6 +16,10 @@ Held for a person 1 · usually 0.6. Digest texts 0.
 - **High · 7 texts not delivered** (carrier code 30007) to parents yesterday. Who can fix it: QuitCode —
   check the carrier filter; by today; no cost; your yes not needed.
 
+**Sources.** Read yesterday: 6 ok · 1 changed · 1 failed. Missed: 2 not read for over 7 days. Blockers:
+Altadena Library calendar failed (page not answering) — run Source checks; Pasadena Parks feed moved —
+new address in the Source agent's report; Arcadia PTA newsletter missed since Dec 1 — run Source checks.
+
 **Money.** This month so far: SMS $41.20 · AI $18.75.
 
 **What parents are asking for.** Weekend swim lessons for toddlers; a Spanish-speaking pediatrician;

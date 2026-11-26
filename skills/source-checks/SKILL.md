@@ -24,6 +24,9 @@ Each agent below runs **in the foreground**: wait for its report before the next
 
 1. Dispatch **pando:source-agent** with the addresses given — or with none, and it reads Pando's sources
    & partners list, least recently checked first, recording each check.
-2. Show its finds and failed sources (a source to pause or retire is proposed only if the founder asks:
+2. Every source in the run ends with one status (Success, Partial, Changed, Failed, Blocked, Gone, Not due —
+   the agent's report). Then `list_sources` (`role: "source"`): any active source this run did not read and
+   not read for over 7 days is **missed** — a check that did not run counts as a failure, never as fine.
+3. Show its finds, failed and missed sources (a source to pause or retire is proposed only if the founder asks:
    `propose_source` with its `source_id` and `status`); for the new ones the founder wants, dispatch **pando:fact-checker**
    as in the research workflow.

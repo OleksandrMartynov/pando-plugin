@@ -22,7 +22,8 @@ fails is named in its section and the brief goes on.
 | 5 | `costs_summary` `{"from": "<1st of this month>", "to": "<yesterday>"}` | `sms.total` + `sms.currency`, `ai.total_usd`; `configured: false` = "not configured" |
 | 6 | `unanswered_questions` `{"days": 1, "limit": 10}` | `texted[].question`; the counts in `held_not_quoted` |
 | 7 | Friday or Saturday (Pacific) only: `digest_weeks` `{"week": "<this Saturday>"}` | `totals`; each group's `status` and `approval` (`awaiting` = waits for the founder) |
-| 8 | Google Calendar, if connected | today's events; skipped quietly if not |
+| 8 | `list_sources` `{"role": "source"}` | each source's `last_check` and `last_checked_at`: how many were read yesterday (Pacific) and how each went; any active source never read or not read for over 7 days |
+| 9 | Google Calendar, if connected | today's events; skipped quietly if not |
 
 Reading them: a missing count is 0; `null` is "not known yet", never 0. From `mcp_tool_problems` only
 `outcome: "error"` rows count (refusals are agents told no). Queues worth a line: answers waiting for a
@@ -43,7 +44,16 @@ proposals have an age; the rest are counts), and its page — [references/pages-
 high: affects parents today · low), **what happened** and **who is affected** in counts, **who can fix it**
 (same file), **next step**, **by when**, **cost**, whether the **founder's yes** is needed. Nothing: one line.
 
-**Money.** SMS and AI this month so far; a half "not configured" is said so.
+**Sources.** Read yesterday: ok · changed · failed · gone, in counts. Then **missed**: active sources never
+read or not read for over 7 days — a check that did not run counts as a failure (the founder's playbook),
+never as quiet. Name at most three blockers (failed, gone, missed), each with its next step (the Source
+checks workflow, or pausing it — the founder's call). No sources on the list: "No sources on the list yet."
+
+**Money.** SMS and AI this month so far; a half "not configured" is said so. When the scheduled task or
+the founder names a monthly budget, add what is left of it; otherwise say nothing of a budget.
+
+Critical problems — texts failing, jobs stopped — are texted by Pando the moment they happen; this brief
+repeats them, it is not the alarm.
 
 **What parents are asking for.** Up to three of `texted` in a few words each, then the counts in
 `held_not_quoted` ("2 more held as sensitive"). Both empty: "No new unanswered questions."
@@ -56,5 +66,5 @@ A sample, with invented numbers: [references/example.md](references/example.md).
 
 ## Done when
 
-Every section is there or says why not; every problem has an owner and a next step; each section fits one
-phone screen.
+Every section is there or says why not; every problem has an owner and a next step; every source on the
+list is counted (read, or missed); each section fits one phone screen.

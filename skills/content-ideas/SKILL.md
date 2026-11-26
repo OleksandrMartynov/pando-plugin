@@ -12,7 +12,8 @@ Each agent below runs **in the foreground**: wait for its report before the next
 
 1. **The week or theme.** Default: the coming Saturday's digest.
 2. **Posts (Marketing).** Dispatch **pando:marketing** with the week or theme and "two posts: one carousel,
-   one single". Only verified events — digest candidates and the digest's own items.
+   one single". Only verified events — digest candidates and the digest's own items. Each post ends by
+   inviting people to text Pando a question: the playbook counts content by the questions it brings, not likes.
 3. **Newsletter (Writer)**, only if asked: dispatch **pando:writer** with the same verified events (with their price and popular when the tools gave
    them) and "a newsletter, in your newsletter format, 120 words".
 4. **Hand over.** The drafts with their sources. Nothing is posted: the founder posts them herself.
