@@ -11,7 +11,7 @@ import { NEVER, PANDO_ALL, PANDO_DECIDES, PANDO_WRITES, SAFE_BUILTINS, decide, r
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1")), "..");
 /** Tools that no longer exist and must not be named anywhere. */
 const GONE = /\b(save_skill|propose_skill|admin_said_(yes|no|save))\b/;
-const NAMES_DECIDING = /\b(approve_proposal|reject_proposal)\b/;
+const NAMES_DECIDING = /\b(approve_proposal|reject_proposal|set_budget)\b/;
 /** A long name ties a file to one way of connecting Pando. */
 const LONG_NAME = /\bmcp__[A-Za-z0-9_-]+__[A-Za-z0-9_-]+/;
 

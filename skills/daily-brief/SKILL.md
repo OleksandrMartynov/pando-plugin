@@ -57,7 +57,7 @@ never as quiet. Name at most three blockers (failed, gone, missed), each with it
 checks workflow, or pausing it — the founder's call). No sources on the list: "No sources on the list yet."
 
 **Money.** SMS and AI this month so far; a half "not configured" is said so. Beside each half that has a
-budget (`budget.sms`, `budget.ai` — set on /admin): what is left and, when given, the month at this pace
+budget (`budget.sms`, `budget.ai` — the founder sets them in the chat): what is left and, when given, the month at this pace
 (`on_pace_for`). A half over its budget (`over`), or on pace to pass it, is also a problem under **What went
 wrong** — owner the founder. `budget` null, or a half null: say nothing of that budget.
 

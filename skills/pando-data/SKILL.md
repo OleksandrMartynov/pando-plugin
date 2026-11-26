@@ -34,7 +34,8 @@ more tools decide a waiting proposal — used only as shared rule 3 says, never 
 | Find a record | `search_records` (query, kind, area, age_band, status — approved unless asked; source_check, not_checked_since) | read |
 | One record, with what parents said | `get_record` (`id`) | read |
 | Questions Pando could not answer | `unanswered_questions` (`days`) | read |
-| What Pando spent, useful answers, cost per useful answer | `costs_summary` (`from`, `to`: YYYY-MM-DD) | read |
+| What Pando spent, useful answers, cost per useful answer, each monthly budget beside its spend | `costs_summary` (`from`, `to`: YYYY-MM-DD) | read |
+| Set or change the monthly SMS or AI budget — only the figure the person says here | shared rule 3 (the half not named stays) | decide |
 | How hard Pando leans on contributors: requests, replies, PASSes, who cannot be asked today and why, opt-outs after a request | `contributor_load` (`days`: 1 for a day, 7 for a week) | read |
 | Sources & partners Pando reads and works with | `list_sources` (role, kind, status) | read |
 | Proposals and decisions | `list_proposals` (`status`) | read |
