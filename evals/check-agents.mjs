@@ -38,6 +38,17 @@ const ABOUT = /<!-- about-pando:start -->[\s\S]*?<!-- about-pando:end -->/;
 const aboutSource = ABOUT.exec(fs.readFileSync(path.join(root, "shared", "pando-context.md"), "utf8").replace(/\r\n/g, "\n"))?.[0] ?? null;
 if (!aboutSource) fail("shared/pando-context.md: the about-pando block is missing");
 
+/* The Operating Playbook's agent instruction template (v1.2, 26 Nov): a Brief with these thirteen fields, in order, then Cases. */
+const BRIEF_FIELDS = ["Objective", "Why it matters to Pando", "Inputs", "Data and tools", "Permissions", "Geography and time", "Output", "Evidence", "Cost and time cap", "Failure states", "Acceptance test", "Owner", "Escalation"];
+const briefProblem = (text) => {
+  const brief = /\n## Brief\n([\s\S]*?)\n## Cases\n([\s\S]*?)(?=\n## |\n[A-Z0-9])/.exec(text);
+  if (!brief) return "no ## Brief followed by ## Cases";
+  const fields = [...brief[1].matchAll(/^- \*\*([^*]+):\*\* \S/gm)].map((m) => m[1]);
+  if (fields.join("|") !== BRIEF_FIELDS.join("|")) return `Brief fields are ${fields.join(", ") || "none"} — want ${BRIEF_FIELDS.join(", ")}`;
+  if ((brief[2].match(/^- \S/gm) ?? []).length < 3) return "Cases has fewer than three cases";
+  return null;
+};
+
 /* The hook itself, on the calls that matter: a listed tool on three connections, an unlisted one, a decision. */
 {
   const a = { tools: ["WebFetch", "search_records"], accounts: false };
@@ -84,6 +95,7 @@ for (const file of fs.readdirSync(path.join(root, "agents")).filter((f) => f.end
   const body = text.replace(/^---\n[\s\S]*?\n---/, "");
   if (NAMES_DECIDING.test(body)) fail(`${name}: names ${NAMES_DECIDING.exec(body)[0]} — a decision is shared rule 3's, never an agent's step`);
   if (QUITCODE.includes(name) && aboutSource && ABOUT.exec(text)?.[0] !== aboutSource) fail(`${name}: its "About Pando" block is missing or differs from shared/pando-context.md — copy it word for word`);
+  if (QUITCODE.includes(name) && briefProblem(text)) fail(`${name}: ${briefProblem(text)} (the Operating Playbook's agent template)`);
   if (failed === before) console.log(`ok    ${name.padEnd(18)} ${agent.tools.length} tools${agent.accounts ? " + connected accounts" : ""}; writes: ${writes.join(", ") || "none"}${QUITCODE.includes(name) ? "" : "  (added by the client)"}`);
 }
 
