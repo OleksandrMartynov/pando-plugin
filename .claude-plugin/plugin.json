@@ -1,7 +1,7 @@
 {
   "name": "pando",
   "displayName": "Pando",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "Pando's own agents and workflows for Claude Cowork: read Pando's numbers and records through Pando MCP, propose changes the founder decides in the chat — and changes to this plugin's own skills, agents and connectors, committed at pando.is/admin/proposals — and get the numbers on demand.",
   "author": {
     "name": "QuitCode"

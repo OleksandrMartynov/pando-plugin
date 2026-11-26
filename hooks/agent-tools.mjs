@@ -34,7 +34,7 @@ export const PANDO_READS = [
 ];
 export const PANDO_WRITES = ["propose_record_edit", "propose_new_record", "propose_fact_check", "propose_event", "propose_source", "propose_plugin_change", "record_source_check"];
 /** Decided only by the person, in the main conversation (shared rule 3): never in an agent's list. */
-export const PANDO_DECIDES = ["approve_proposal", "reject_proposal", "set_budget"];
+export const PANDO_DECIDES = ["approve_proposal", "reject_proposal", "set_budget", "remove_digest_candidate"];
 export const PANDO_ALL = new Set([...PANDO_READS, ...PANDO_WRITES, ...PANDO_DECIDES]);
 /** Built-in tools an agent's list may name: they read. */
 export const SAFE_BUILTINS = ["Read", "Grep", "Glob", "WebFetch", "WebSearch"];

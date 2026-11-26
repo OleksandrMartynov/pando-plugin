@@ -31,6 +31,7 @@ more tools decide a waiting proposal — used only as shared rule 3 says, never 
 | What went wrong | `what_went_wrong` (`days`) | read |
 | The weekly digest | `digest_weeks` (`week` = a Saturday, or none for the list) | read |
 | Events approved for the digest | `digest_candidates` | read |
+| Take an event out of the digest — only on the person's word about that event | shared rule 3 | decide |
 | Find a record | `search_records` (query, kind, area, age_band, status — approved unless asked; source_check, not_checked_since) | read |
 | One record, with what parents said | `get_record` (`id`) | read |
 | Questions Pando could not answer | `unanswered_questions` (`days`) | read |
