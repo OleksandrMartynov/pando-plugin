@@ -16,7 +16,7 @@ tool that fails or times out is retried once, then named and skipped.
 
 | # | Call | What to read |
 | --- | --- | --- |
-| 1 | `parents_totals` `{"weeks": 10}` | `joined_by_week`, summed into each month by the week's Monday |
+| 1 | `parents_totals` `{"weeks": 10}` | `joined_by_week` with its `by_channel`, summed into each month by the week's Monday; `by_channel` (what each channel's parents went on to do) |
 | 2 | `questions_totals` `{"weeks": 10}` | `asked_by_week` (`asked`, `sent`, `held`, `helped_yes`, `helped_no`) per month |
 | 3 | `impact_totals` `{"from": "<1st of last month>", "to": "<its last day>"}` | helped yes / no / awaiting / never asked, for last month's answers |
 | 4 | `records_totals` `{}` | approved by freshness, waiting for review |
@@ -36,7 +36,9 @@ tool that fails or times out is retried once, then named and skipped.
    digest families, total cost.
 2. **Cost per useful answer**, this month and the one before (shared definition). Then SMS and AI each
    against its monthly budget when one is set (`budget`): spent of budget, and over or under by how much.
-3. **What worked** and **what did not**, one line each with the number that shows it.
+3. **What worked** and **what did not**, one line each with the number that shows it. Channels count here:
+   sign-ups per channel this month against the one before, and which channel's parents go on to ask and
+   contribute.
 4. **Biggest demand gaps** — up to five topics from the unanswered questions, with counts.
 5. **Reliability** — how often something went wrong, and whether the same thing repeated; how many active
    sources there are and how many failed, went or were not read this month.

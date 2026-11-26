@@ -17,7 +17,7 @@ Call these with exactly these arguments:
 
 | # | Call | What to read from it |
 | --- | --- | --- |
-| 1 | `parents_totals` `{"weeks": 9}` | `joined_by_week` (sign-ups); totals `phone_verified`, `contributors`, `digest_on`, `opted_out` |
+| 1 | `parents_totals` `{"weeks": 9}` | `joined_by_week` (sign-ups, each with `by_channel`); `by_channel`, `group_links`, `parent_links`; totals `phone_verified`, `contributors`, `digest_on`, `opted_out` |
 | 2 | `questions_totals` `{"weeks": 9}` | `asked_by_week` — per week `asked`, `sent` (answered), `held`, `helped_yes`, `helped_no`; `held_by_reason` and `answered_from_public_only` are all-time totals, say so; `seed_tool_questions_by_category` |
 | 3 | `impact_totals` `{"from": "<last Monday>", "to": "<last Sunday>"}` | `answered_yes`, `answered_no`, `awaiting`, `unasked` (never asked "did it help"), `sent` — last week's answers |
 | 4 | `unanswered_questions` `{"days": 7, "limit": 30}` and `demand_by_place` `{}` | the questions' topics; where people and questions are |
@@ -44,7 +44,10 @@ Rules:
 **Pando — week of {Monday date}**
 
 1. **Growth.** Sign-ups, phones verified, contributors: last week, the 7-week average, the trend in one line.
-   The sign-up step where most people stopped.
+   The sign-up step where most people stopped. Then **channels**: last week's sign-ups by channel (texted,
+   a parent's link, a group's link, QR, website), and from `by_channel` the channel whose parents most often
+   go on to ask by text — one line. A group by its label; a parent's own link only as a count. There is no
+   campaign data: never guess which post or flyer worked.
 2. **Questions and answers.** Asked, answered, held for a person, answered from public information only;
    "did it help" yes/no. One line on what changed.
 3. **Demand gaps.** Group the unanswered questions into at most five topics (a topic, never a parent), each

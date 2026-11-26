@@ -22,7 +22,7 @@ more tools decide a waiting proposal — used only as shared rule 3 says, never 
 | --- | --- | --- |
 | How is Pando doing today; what waits for an admin | `pando_overview` | read |
 | Yesterday against the 7 days before | `daily_activity` (`days` ≥ 8) | read |
-| Parents: how many, per week, founding, digest on, opted out | `parents_totals` (`weeks`) | read |
+| Parents: how many, per week, founding, digest on, opted out, sign-ups by channel | `parents_totals` (`weeks`) | read |
 | Questions: asked, answered, held, did it help — per week | `questions_totals` (`weeks`) | read |
 | Did answers help, overall or between two days | `impact_totals` (`from`, `to`) | read |
 | Records by kind, status, freshness | `records_totals` | read |
