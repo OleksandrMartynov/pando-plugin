@@ -16,7 +16,8 @@ Pando is on Claude **Team**, so the plugin reaches everyone through the organiza
    Pando does not need adding under Organization settings → Connectors as well: the plugin brings it.
 2. **Each person:** on the plugin's **Connectors** tab, connect **Pando** and sign in with your Pando
    admin login. (Pando connected another way — your own connector, an organization connector — works
-   too, named **Pando** when you add it; the agents hold to their tool lists on any connection, see *What is here*.) Also connect **Gmail** and **Google Calendar** under Customize → Connectors — the
+   too, named **Pando** when you add it; the agents hold to their tool lists on any connection, see *What is here*.) Connect **Canva** on the same tab with your own Canva account — the Marketing agent designs the week's
+   posts there as drafts. Also connect **Gmail** and **Google Calendar** under Customize → Connectors — the
    partner and daily-brief work reads them (read only: the Coordinator's calendar holds and reminders
    are not built — the features sheet still has them *to confirm*). An admin must have switched Pando MCP on at
    pando.is/admin/mcp.
@@ -50,7 +51,7 @@ read-only ones without asking); allow the read tools for a session or in your se
 | "how did sign-ups do this month?" | `numbers-on-demand` |
 | "find new summer camps near Pasadena and confirm registration dates" · `/pando:research` | Researcher → you choose → Fact-checker proposes |
 | "who should we partner with?" · `/pando:partner-outreach` | Partner analyst → you choose → Writer drafts |
-| "social posts for this week" · `/pando:content-ideas` | Marketing (and Writer) draft from verified events |
+| "social posts for this week" · `/pando:content-ideas` | Marketing (and Writer) draft from verified events; Marketing designs them in your Canva when it is connected |
 | "check our records" · `/pando:source-checks` | Fact-checker re-checks pages; Source agent reads feeds |
 | "the weekly review" · `/pando:weekly-review` | with the monthly review on the first Monday |
 | "make a skill that…", "change the writer so…", "connect Notion" · `/pando:customize` | Agent builder drafts and tests a skill or agent (or you give a connector's address) → proposed → you read it line by line and commit it at pando.is/admin/proposals |

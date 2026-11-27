@@ -27,6 +27,16 @@ const MAY_WRITE = {
   "source-agent": ["record_source_check"],
 };
 
+/**
+ * A connector's own tools a QuitCode agent may name (27 Nov: Marketing designs posts in Canva). Held by name
+ * like Pando's, and only while the connector is in .mcp.json — remove the connector and the agent fails here.
+ */
+const CONNECTOR_TOOLS = {
+  canva: ["generate-design", "get-create-design-async-job", "create-design-from-candidate", "create-design-from-brand-template", "get-design", "get-design-content", "get-design-pages", "get-design-thumbnail", "start-editing-transaction", "perform-editing-operations", "commit-editing-transaction", "cancel-editing-transaction", "list-brand-kits", "search-brand-templates", "upload-asset-from-url", "get-export-formats", "export-design"],
+};
+const declared = Object.keys(JSON.parse(fs.readFileSync(path.join(root, ".mcp.json"), "utf8")).mcpServers ?? {});
+const connectorOwns = (t) => Object.entries(CONNECTOR_TOOLS).some(([c, tools]) => declared.includes(c) && tools.includes(t) && !PANDO_ALL.has(t));
+
 let failed = 0;
 const fail = (m) => {
   failed++;
@@ -84,7 +94,7 @@ for (const file of fs.readdirSync(path.join(root, "agents")).filter((f) => f.end
   if (!NEVER.every((t) => deny.includes(t))) fail(`${name}: disallowedTools must deny ${NEVER.join(", ")}`);
   for (const t of agent.tools) {
     if (NEVER.includes(t)) fail(`${name}: is given ${t}`);
-    else if (!SAFE_BUILTINS.includes(t) && !PANDO_ALL.has(t) && !(!QUITCODE.includes(name) && t.includes(":"))) fail(`${name}: names ${t}, which is neither a read tool nor one Pando MCP has`);
+    else if (!SAFE_BUILTINS.includes(t) && !PANDO_ALL.has(t) && !connectorOwns(t) && !(!QUITCODE.includes(name) && t.includes(":"))) fail(`${name}: names ${t}, which is neither a read tool, one Pando MCP has, nor one of a connector in .mcp.json`);
   }
   const writes = agent.tools.filter((t) => PANDO_WRITES.includes(t));
   const may = new Set(MAY_WRITE[name] ?? []);

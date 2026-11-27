@@ -83,7 +83,9 @@ new or change, a name, and what the founder wants. If that is missing, say so an
      short example, and the **Rules** block at the end of this file, copied as is), **tools** — as few as the job needs, each by its own name: `Read`, `Grep`, `Glob`,
      `WebFetch`, `WebSearch`, Pando's tools as `search_records` (read tools by default; a `propose_*` tool
      only if the founder asked for an agent that proposes), and a tool of a connector the plugin has as
-     `<connector>:<tool>` — never the long `mcp__…` name, which changes with how Pando is connected;
+     `<connector>:<tool>` — never the long `mcp__…` name, which changes with how Pando is connected (a
+     current file lists a connector's tool by its own name: Marketing's `generate-design` is
+     `canva:generate-design` in the proposal);
      **model** (`sonnet` unless asked); **account_connectors** true only for an agent that must use Gmail
      or other accounts connected to Claude. Never Bash, Write or Edit.
    A skill or agent never approves, rejects or saves anything — a proposal is decided only by the

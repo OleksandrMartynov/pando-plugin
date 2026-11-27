@@ -74,6 +74,13 @@ never select or show a name, phone, email, address or a parent's words (no `sele
 always exclude test rows (`not is_test`). A query that would need personal columns is not run: say what
 the person would need to look up in the Pando admin instead.
 
+## Canva (designs, the person's own account)
+
+The `canva` connector signs in with the person's own Canva. Marketing uses it to design the posts it
+wrote (`generate-design`, then reads every slide back and corrects it) — [shared rule 8](../../shared/safety.md):
+drafts only, nothing shared or published. Not connected: the posts stay text, and the person connects
+Canva on the plugin's **Connectors** tab.
+
 ## Changing Pando
 
 How to make each kind of proposal: [references/proposals.md](references/proposals.md).
