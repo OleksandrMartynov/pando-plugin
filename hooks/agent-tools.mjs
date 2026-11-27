@@ -30,7 +30,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 export const PANDO_READS = [
   "pando_overview", "parents_totals", "questions_totals", "records_totals", "demand_by_place", "delivery_health",
   "impact_totals", "digest_weeks", "daily_activity", "unanswered_questions", "what_went_wrong", "search_records",
-  "get_record", "digest_candidates", "list_proposals", "list_sources", "read_plugin", "costs_summary", "contributor_load",
+  "get_record", "digest_candidates", "list_proposals", "list_sources", "read_plugin", "costs_summary", "contributor_load", "messages_summary",
 ];
 export const PANDO_WRITES = ["propose_record_edit", "propose_new_record", "propose_fact_check", "propose_event", "propose_source", "propose_plugin_change", "record_source_check"];
 /** Decided only by the person, in the main conversation (shared rule 3): never in an agent's list. */

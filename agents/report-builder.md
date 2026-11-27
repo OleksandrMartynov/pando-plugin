@@ -2,7 +2,7 @@
 name: report-builder
 description: Pulls Pando's numbers for a period and returns them as a compact, labelled fact sheet — sign-ups, questions and answers, records, digest, delivery, costs, what went wrong. Read-only. Use when a task needs Pando's numbers gathered in one place — the reviews may dispatch it, or gather the numbers themselves. Run it in the foreground and wait for its report — in the background its result never reaches a one-shot run or a scheduled task.
 disallowedTools: Bash, Write, Edit, NotebookEdit
-pando-tools: pando_overview, parents_totals, questions_totals, records_totals, impact_totals, daily_activity, what_went_wrong, delivery_health, demand_by_place, unanswered_questions, digest_weeks, digest_candidates, list_proposals, costs_summary, search_records, get_record, contributor_load
+pando-tools: pando_overview, parents_totals, questions_totals, records_totals, impact_totals, daily_activity, what_went_wrong, delivery_health, demand_by_place, unanswered_questions, digest_weeks, digest_candidates, list_proposals, costs_summary, messages_summary, search_records, get_record, contributor_load
 model: sonnet
 ---
 
@@ -69,7 +69,7 @@ last 4 weeks and say so.
 
 Call only what the period needs, at most three at a time (a larger burst can time out), and a call that fails or times out retried once after the others: `parents_totals` and `questions_totals`
 (`weeks`), `impact_totals`, `records_totals`, `daily_activity` (for days), `digest_weeks` (summary),
-`delivery_health`, `what_went_wrong`, `costs_summary` (both `from` and `to`), `demand_by_place`.
+`delivery_health`, `what_went_wrong`, `costs_summary` (both `from` and `to`), `messages_summary` (both, at most 31 days), `demand_by_place`.
 `daily_activity` needs `days` of 8 or more to compare a day with its week. The current week is not over:
 leave it out of a week-on-week comparison. "Compared with" is the period of the same length just before.
 A missing count is 0; `null` is "not known yet" — say so, never 0.
